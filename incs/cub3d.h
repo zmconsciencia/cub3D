@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/21 17:21:30 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:55:16 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,44 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
+typedef struct s_win {
+    void	*mlx_ptr;
+	void	*win_ptr;
+    int     w;
+    int     h;
+}       t_win;
+
+typedef struct s_img {
+    
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+    int     w;
+    int     h;
+}   t_img;
+
+typedef struct	s_data {
+    t_win   window;
+    t_img   image;
+    float     px;
+    float     py;
+    float     pdx;
+    float     pdy;
+    float     pda;
+    int     **map;
+}				t_data;
+
+
+//mlx utils
+t_win	new_program(int w, int h, char *str);
+t_img	new_img(int w, int h);
+void	my_mlx_pixel_put(t_img data, int x, int y, int color);
+int	my_mlx_pixel_get(t_img data, int x, int y);
+int exit_game();
+
+//control structure
+t_data	*data(void);
 
 #endif

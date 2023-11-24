@@ -1,6 +1,7 @@
 NAME = cub3D
 
 SOURCES = main.c
+			mlx_utils.c
 
 OBJ = $(SOURCES:.c=.o)
 
