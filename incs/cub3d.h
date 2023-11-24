@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/24 15:55:16 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:03:13 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,11 @@ int exit_game();
 
 //control structure
 t_data	*data(void);
+
+//paint stuff
+void paintFloor();
+
+//parse
+void allocateMap();
 
 #endif
