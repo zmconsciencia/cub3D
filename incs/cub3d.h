@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/24 16:03:13 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/11/25 12:25:35 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 #  define BUFFER_SIZE 1
 # endif
 
-# ifndef PI
-#  define PI 3.1415926535
-# endif
+# define PI 3.1415926535
+# define PI2 PI/2
+# define PI3 3*PI/2
 
 # include "../mlx_linux/mlx.h"
 # include <stdio.h>
@@ -61,7 +61,6 @@ typedef struct	s_data {
     float     pda;
     int     **map;
 }				t_data;
-
 
 //mlx utils
 t_win	new_program(int w, int h, char *str);

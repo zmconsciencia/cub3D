@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/24 16:05:54 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/11/25 14:54:04 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,88 @@ t_data	*data(void)
 	static t_data	data;
 
 	return (&data);
+}
+
+void draw_line(int x0, int y0, int x1, int y1);
+
+int bigX = 8, bigY = 8, mSize = 64;
+
+int FixAng(int a){ if(a>359){ a-=360;} if(a<0){ a+=360;} return a;}
+float degToRad(int a) { return a*PI/180.0;}
+
+float dist(float ax, float ay, float bx, float by, float ang) {return (sqrt((bx-ax) *  (bx-ax) + (by-ay) *  (by-ay)));}
+
+void drawRays2D(void)
+{
+    int r, mx, my, dof;
+    float rx, ry, ra, xo, yo;
+
+    ra = data()->pda;
+    for (r = 0; r < 1; r++) {
+        dof = 0;
+        float aTan = -1/tan(ra);
+        float distH = 100000;
+        float hx = data()->px;
+        float hy = data()->py;
+        //Horizontal lines
+        if (ra > PI) {
+            ry = (((int)data()->py>>6)<<6)-0.001;
+            rx = (data()->py - ry) * aTan+data()->px;
+            yo=-64;
+            xo=-yo*aTan;
+        }
+        if (ra < PI) {
+            ry = (((int)data()->py>>6)<<6)+64;
+            rx = (data()->py - ry) * aTan+data()->px;
+            yo=64;
+            xo=-yo*aTan;
+        }
+        while(dof < 8) {
+            mx=(int) (rx)>>6;
+            my=(int) (ry)>>6;
+            if (mx >= 0 && mx < bigX && my >= 0 && my < bigY && data()->map[my][mx] == 1) {
+                hx = rx;
+                hy = ry;
+                distH = dist(data()->px, data()->py, hx, hy, ra);
+                dof = 8;
+            }
+            else {rx+=xo; ry+=yo; dof += 1;}
+        }
+
+        //Vertical Lines
+        dof = 0;
+        float nTan = -tan(ra);
+        float distV = 100000;
+        float vx = data()->px;
+        float vy = data()->py;
+        if (ra > PI2 && ra<PI3) {
+            rx = (((int)data()->px>>6)<<6)-0.001;
+            ry = (data()->px - rx) * nTan+data()->py;
+            xo=-64;
+            yo=-xo*nTan;
+        }
+        if (ra < PI2 || ra >PI3) {
+            rx = (((int)data()->px>>6)<<6)+64;
+            ry = (data()->px - rx) * nTan+data()->py;
+            xo=64;
+            yo=-xo*nTan;
+        }
+        if (ra == 0 || ra == PI) {rx=data()->px; ry=data()->py; dof = 8;}
+        while(dof < 8) {
+            mx=(int) (rx)>>6;
+            my=(int) (ry)>>6;
+            if (mx >= 0 && mx < bigX && my >= 0 && my < bigY && data()->map[my][mx] == 1) {
+                vx = rx;
+                vy = ry;
+                distV = dist(data()->px, data()->py, vx, vy, ra);
+                dof = 8;
+            }
+            else {rx+=xo; ry+=yo; dof += 1;}
+        }
+        if (distV<distH) {rx = vx; ry = vy;}
+        if (distV>distH) {rx = hx; ry = hy;}
+        draw_line(data()->px, data()->py, rx, ry);
+    }
 }
 
 void draw_line(int x0, int y0, int x1, int y1) {
@@ -45,7 +127,7 @@ void draw_line(int x0, int y0, int x1, int y1) {
 }
 
 void drawplayer(void) {
-    int size = 10;
+    int size = 20;
     int px = data()->px;
     int py = data()->py;
     float vertex1_x = px + size * cos(data()->pda);
@@ -61,13 +143,15 @@ void drawplayer(void) {
     draw_line(vertex1_x, vertex1_y, vertex2_x, vertex2_y);
     draw_line(vertex2_x, vertex2_y, vertex3_x, vertex3_y);
     draw_line(vertex3_x, vertex3_y, vertex1_x, vertex1_y);
+    drawRays2D();
 }
 
 void buttons(int kp) {
     if ((kp == XK_d || kp == XK_Right))
 	{
         data()->pda += 0.1;
-        if (data()->pda > 2*PI) {data()->pda -= 2*PI;} data()->pdx = cos(data()->pda) * 5; data()->pdy = sin(data()->pda) * 5;
+        if (data()->pda > 2*PI) {data()->pda -= 2*PI;}
+        data()->pdx = cos(data()->pda) * 5; data()->pdy = sin(data()->pda) * 5;
 	}
 	else if ((kp == XK_s || kp == XK_Down))
 	{
@@ -107,15 +191,15 @@ int	game_loop(void *a)
 }
 
 int main(void) {
-    data()->px = 40;
-    data()->py = 40;
+    data()->px = 100;
+    data()->py = 100;
     data()->map = NULL;
     data()->pdx = cos(data()->pda) * 5; data()->pdy = sin(data()->pda) * 5;
     allocateMap();
-    data()->window = new_program(8 * 32, 8 * 32, "cub3D");
+    data()->window = new_program(8 * 64, 8 * 64, "cub3D");
     if (!data()->window.win_ptr || !data()->window.mlx_ptr)
         exit(1);
-    data()->image = new_img(8 * 32, 8 * 32);
+    data()->image = new_img(8 * 64, 8 * 64);
     paintCanva();
     mlx_hook(data()->window.win_ptr, 2, 1L << 0, move, data());
     mlx_hook(data()->window.win_ptr, 17, 0, exit_game, data());

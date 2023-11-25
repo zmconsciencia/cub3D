@@ -7,11 +7,11 @@ SOURCES = main.c \
 OBJ = $(SOURCES:.c=.o)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -Iincs -O3 -c $< -o $@
+	$(CC) -I/usr/include -Imlx_linux -Iincs -O3 -c $< -o $@
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -g -Iincs -Imlx_Linux
+CFLAGS = -g -Iincs -Imlx_Linux
 
 all: $(NAME)
 
