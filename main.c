@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/25 14:54:04 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:58:17 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ void drawRays2D(void)
     int r, mx, my, dof;
     float rx, ry, ra, xo, yo;
 
-    ra = data()->pda;
-    for (r = 0; r < 1; r++) {
+    ra = data()->pda - DR*30;
+    if (ra < 0) {ra += 2*PI;}
+    if (ra > 2*PI) {ra -= 2*PI;}
+    for (r = 0; r < 45; r++) {
         dof = 0;
         float aTan = -1/tan(ra);
         float distH = 100000;
@@ -98,6 +100,7 @@ void drawRays2D(void)
         if (distV<distH) {rx = vx; ry = vy;}
         if (distV>distH) {rx = hx; ry = hy;}
         draw_line(data()->px, data()->py, rx, ry);
+        ra+=DR;
     }
 }
 
