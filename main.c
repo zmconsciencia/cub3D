@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/25 17:58:17 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/11/26 16:58:59 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,50 @@ float degToRad(int a) { return a*PI/180.0;}
 
 float dist(float ax, float ay, float bx, float by, float ang) {return (sqrt((bx-ax) *  (bx-ax) + (by-ay) *  (by-ay)));}
 
+void mlx_draw_line(int x0, int y0, int x1, int y1, int thickness, int color)
+{
+    int dx = abs(x1 - x0);
+    int dy = abs(y1 - y0);
+    int sx = (x0 < x1) ? 1 : -1;
+    int sy = (y0 < y1) ? 1 : -1;
+    int err = dx - dy;
+
+    while (1)
+    {
+        for (int i = 0; i < thickness; i++)
+        {
+            my_mlx_pixel_put(data()->image, x0, y0 + i, color);
+        }
+
+        if (x0 == x1 && y0 == y1)
+            break;
+
+        int e2 = 2 * err;
+        if (e2 > -dy)
+        {
+            err -= dy;
+            x0 += sx;
+        }
+        if (e2 < dx)
+        {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
+
 void drawRays2D(void)
 {
     int r, mx, my, dof;
-    float rx, ry, ra, xo, yo;
+    float rx, ry, ra, xo, yo, finalDist;
 
+    // ra = data()->pda;
     ra = data()->pda - DR*30;
+
     if (ra < 0) {ra += 2*PI;}
     if (ra > 2*PI) {ra -= 2*PI;}
-    for (r = 0; r < 45; r++) {
+    for (r = 0; r < 60; r++) {
+        printf("%d", r);
         dof = 0;
         float aTan = -1/tan(ra);
         float distH = 100000;
@@ -97,10 +132,26 @@ void drawRays2D(void)
             }
             else {rx+=xo; ry+=yo; dof += 1;}
         }
-        if (distV<distH) {rx = vx; ry = vy;}
-        if (distV>distH) {rx = hx; ry = hy;}
+        if (distV<distH) {rx = vx; ry = vy; finalDist = distH;}
+        if (distV>distH) {rx = hx; ry = hy; finalDist = distV;}
         draw_line(data()->px, data()->py, rx, ry);
-        ra+=DR;
+        //----3DCast
+        int ca = FixAng(data()->pda - ra);
+        finalDist = distH * cos(degToRad(ca));
+        if (r == 30) {printf("%f", finalDist);}
+        int lineH = (mSize * 320) / finalDist;
+        if (lineH > 320)
+            lineH = 320;
+        int lineOff = 160 - (lineH >> 1);
+        int color = 0xFF0000;
+        for (int i = 0; i < lineH; i++)
+        {
+            for (int w = 530; w < 538; w++) {
+                my_mlx_pixel_put(data()->image, r * 8 + w, lineOff + i, color);
+                my_mlx_pixel_put(data()->image, r * 8 + w, lineOff + lineH, color);
+            }
+        }
+        ra +=DR; if (ra < 0) {ra +=2*PI;} if (ra>2*PI) {ra -=2*PI;} 
     }
 }
 
@@ -199,10 +250,10 @@ int main(void) {
     data()->map = NULL;
     data()->pdx = cos(data()->pda) * 5; data()->pdy = sin(data()->pda) * 5;
     allocateMap();
-    data()->window = new_program(8 * 64, 8 * 64, "cub3D");
+    data()->window = new_program(1024, 510, "cub3D");
     if (!data()->window.win_ptr || !data()->window.mlx_ptr)
         exit(1);
-    data()->image = new_img(8 * 64, 8 * 64);
+    data()->image = new_img(1024, 510);
     paintCanva();
     mlx_hook(data()->window.win_ptr, 2, 1L << 0, move, data());
     mlx_hook(data()->window.win_ptr, 17, 0, exit_game, data());
