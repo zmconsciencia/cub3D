@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/25 17:40:08 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:31:03 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
-
-# define PI 3.1415926535
-# define PI2 PI/2
-# define PI3 3*PI/2
-# define DR 0.0174533
 
 # include "../mlx_linux/mlx.h"
 # include <stdio.h>
@@ -60,6 +55,10 @@ typedef struct	s_data {
     float     pdx;
     float     pdy;
     float     pda;
+    float     planeX;
+    float     planeY;
+    double    currTime;
+    double    oldTime;
     int     **map;
 }				t_data;
 
