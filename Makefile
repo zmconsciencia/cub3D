@@ -1,8 +1,10 @@
 NAME = cub3D
 
-SOURCES = main.c \
+SOURCES = 	main.c \
 			mlx_utils.c \
-			parse.c
+			parse.c \
+			get_next_line/get_next_line.c \
+			get_next_line/get_next_line_utils.c \
 
 OBJ = $(SOURCES:.c=.o)
 

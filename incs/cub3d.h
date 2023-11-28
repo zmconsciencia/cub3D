@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/25 17:40:08 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:09:33 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,32 +35,32 @@
 # include <limits.h>
 # include <math.h>
 typedef struct s_win {
-    void	*mlx_ptr;
+	void	*mlx_ptr;
 	void	*win_ptr;
-    int     w;
-    int     h;
+	int     w;
+	int     h;
 }       t_win;
 
 typedef struct s_img {
-    
+	
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-    int     w;
-    int     h;
+	int     w;
+	int     h;
 }   t_img;
 
 typedef struct	s_data {
-    t_win   window;
-    t_img   image;
-    float     px;
-    float     py;
-    float     pdx;
-    float     pdy;
-    float     pda;
-    int     **map;
+	t_win   window;
+	t_img   image;
+	float     px;
+	float     py;
+	float     pdx;
+	float     pdy;
+	float     pda;
+	int     **map;
 }				t_data;
 
 //mlx utils

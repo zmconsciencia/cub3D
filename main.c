@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/25 17:58:17 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/11/28 11:23:22 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,9 @@ int	game_loop(void *a)
 	return (0);
 }
 
-int main(void) {
+int main(int ac, char **av) {
+    /* if (ac != 2)
+        return (0); */
     data()->px = 100;
     data()->py = 100;
     data()->map = NULL;
