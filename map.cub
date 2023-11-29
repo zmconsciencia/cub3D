@@ -5,13 +5,13 @@
 
 NO      ./pics/purplestone_NO.xpm
 
-SO ./pics/purplestone_SO.xpm
+SO                    ./pics/purplestone_SO.xpm
 
 WE ./pics/purplestone_WE.xpm
 
 EA 						./pics/purplestone_EA.xpm
 
-F 0  ,  60  ,  0
+F 0 3 3 3 ,6   0,0
 C 25,25,112
 
 	1111111111111111111111111

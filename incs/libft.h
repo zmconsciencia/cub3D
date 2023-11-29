@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:54:28 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/28 21:54:49 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:56:53 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,14 @@ char	*ft_substr(char const *s, unsigned int start, int len);
 char	**ft_split(char const *s, char *c);
 char	*ft_strchr(const char *s, int c);
 int		ft_isspace(char c);
+int		ft_isdigit(int c);
+int		ft_isalpha(int c);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, int n);
 char	*ft_strrchr(const char *s, int c);
 void	*ft_memset(void *s, int c, int n);
+int		print_map(char **map); // remove
+
 
 //get_next_line
 char	*get_next_line(int fd);

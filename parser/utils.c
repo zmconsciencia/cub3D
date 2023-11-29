@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:05:12 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/28 18:05:43 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:23:23 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,16 @@ int	matrix_size(char **map, char side)
 			i++;
 	}
 	return (i);
+}
+void	free_matrix(char **map)
+{
+	int	i;
+
+	i = 0;
+	if (!map)
+		return ;
+	while (map && map[i])
+		free(map[i++]);
+	free(map);
+	map = NULL;
 }

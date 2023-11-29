@@ -5,6 +5,21 @@ SOURCES = 	main.c \
 			parse.c \
 			get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c \
+			Libft/ft_calloc.c \
+			Libft/ft_memset.c \
+			Libft/ft_isspace.c \
+			Libft/ft_split.c \
+			Libft/ft_strchr.c \
+			Libft/ft_strcmp.c \
+			Libft/ft_strdup.c \
+			Libft/ft_strlen.c \
+			Libft/ft_strncmp.c \
+			Libft/ft_strrchr.c \
+			Libft/ft_substr.c \
+			parser/check_file.c \
+			parser/get_map.c \
+			parser/utils.c \
+			parser/exit_free.c \
 
 OBJ = $(SOURCES:.c=.o)
 

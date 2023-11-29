@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/28 22:15:49 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:12:56 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # include <stdbool.h>
 # include <stddef.h>
 
+
 typedef struct s_win {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -57,17 +58,6 @@ typedef struct s_img {
 	int     h;
 }   t_img;
 
-typedef struct	s_data {
-	t_win   window;
-	t_img   image;
-	float     px;
-	float     py;
-	float     pdx;
-	float     pdy;
-	float     pda;
-	int     **map;
-}				t_data;
-
 typedef struct s_textures
 {
 	char	*north;
@@ -81,8 +71,21 @@ typedef struct s_textures
 typedef struct s_map
 {
 	char		**file;
-	t_textures	*textures;
+	t_textures	textures;
 }	t_map;
+
+typedef struct	s_data {
+	t_win   window;
+	t_img   image;
+	float     px;
+	float     py;
+	float     pdx;
+	float     pdy;
+	float     pda;
+	//int     **map;
+	t_map	map;
+}				t_data;
+
 
 
 //mlx utils
@@ -100,11 +103,15 @@ void paintFloor();
 
 //parse
 void allocateMap();
-char **create_matrix(int fd, char *path, int counter);
-char **get_map(char *path);
+t_data	*data(void);
+char 	**create_matrix(int fd, char *path, int counter);
+char 	**get_map(char *path);
 int		matrix_size(char **map, char side);
 int		check_info(t_map *map);
-void	print_map(char **map);
+void	free_matrix(char **map);
+int		check_commas(char **split);
+void	exit_free();
+
 
 
 #endif
