@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/28 15:09:33 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/28 22:15:49 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define HEADER_H
 
 # define BACK 0xc0e070
+# define WHITESPACE " \t\n\r\v\f"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -28,12 +29,16 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <X11/keysym.h>
-# include <X11/X.h>
-# include <X11/Xlib.h>
+// # include <X11/keysym.h>
+// # include <X11/X.h>
+// # include <X11/Xlib.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
+# include "libft.h"
+# include <stdbool.h>
+# include <stddef.h>
+
 typedef struct s_win {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -63,6 +68,23 @@ typedef struct	s_data {
 	int     **map;
 }				t_data;
 
+typedef struct s_textures
+{
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	char	*floor;
+	char	*ceiling;
+}	t_textures;
+
+typedef struct s_map
+{
+	char		**file;
+	t_textures	*textures;
+}	t_map;
+
+
 //mlx utils
 t_win	new_program(int w, int h, char *str);
 t_img	new_img(int w, int h);
@@ -78,5 +100,11 @@ void paintFloor();
 
 //parse
 void allocateMap();
+char **create_matrix(int fd, char *path, int counter);
+char **get_map(char *path);
+int		matrix_size(char **map, char side);
+int		check_info(t_map *map);
+void	print_map(char **map);
+
 
 #endif

@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 15:16:10 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/28 15:40:37 by svalente         ###   ########.fr       */
+/*   Created: 2022/10/26 19:01:31 by svalente          #+#    #+#             */
+/*   Updated: 2023/11/28 21:52:51 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-char **create_matrix(int fd, char *path)
+void	*ft_memset(void *s, int c, int n)
 {
-	char	**matrix;
-	int		counter;
-	char	str;
+	int				i;
+	unsigned char	*p;
 
-	str = get_next_line|()
-}
-
-char **get_map(char *path)
-{
-	int		fd;
-	
-	fd = open(path, O_RDONLY);
-	create_matrix(fd, path);
+	p = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		p[i] = c;
+		i++;
+	}
+	return (p);
 }
