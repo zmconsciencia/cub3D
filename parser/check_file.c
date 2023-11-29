@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:27:18 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/29 16:15:46 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:15:27 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ int	parser(int ac, char **av)
 int	main(int ac, char **av)
 {
 	parser(ac, av);
+	exit_free(NULL);
 	return (0);
 }

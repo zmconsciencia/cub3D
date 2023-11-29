@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/29 16:05:13 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:19:51 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int bigX = 8, bigY = 8, mSize = 64;
 int FixAng(int a){ if(a>359){ a-=360;} if(a<0){ a+=360;} return a;}
 float degToRad(int a) { return a*PI/180.0;}
 
-float dist(float ax, float ay, float bx, float by, float ang) {return (sqrt((bx-ax) *  (bx-ax) + (by-ay) *  (by-ay)));}
+//float dist(float ax, float ay, float bx, float by, float ang) {return (sqrt((bx-ax) *  (bx-ax) + (by-ay) *  (by-ay)));}
 
 // void drawRays2D(void)
 // {

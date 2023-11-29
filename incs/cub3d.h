@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/29 16:12:56 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:37:48 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,11 @@ t_data	*data(void);
 char 	**create_matrix(int fd, char *path, int counter);
 char 	**get_map(char *path);
 int		matrix_size(char **map, char side);
-int		check_info(t_map *map);
+int		check_info();
 void	free_matrix(char **map);
 int		check_commas(char **split);
 void	exit_free();
-
+int		err_msg(char *str);
 
 
 #endif

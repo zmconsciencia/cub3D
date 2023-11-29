@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:09:18 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/29 16:18:13 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:37:22 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	exit_free(char *str)
 {
-	err_msg(str);
+	if (str)
+		err_msg(str);
 	if (data()->map.file)
 		free_matrix(data()->map.file);
 	if (data()->map.textures.north)
