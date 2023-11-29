@@ -1,0 +1,3 @@
+check if numbers are within limits
+error when different from north, south, west, east, floor, ceiling
+get only map

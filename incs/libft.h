@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:54:28 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/29 16:41:15 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:37:42 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		ft_strncmp(const char *s1, const char *s2, int n);
 char	*ft_strrchr(const char *s, int c);
 void	*ft_memset(void *s, int c, int n);
 char	*ft_strjoin(char const *s1, char const *s2);
+int		ft_atoi(const char *str);
 int		print_map(char **map); // remove
 
 

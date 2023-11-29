@@ -22,17 +22,18 @@ NAME = cub3D
 # 			parser/utils.c \
 # 			parser/exit_free.c \
 
-SOURCES = $(wildcard */*.c)
+SOURCES = $(wildcard parser/*.c) $(wildcard Libft/*.c) \
+	 $(wildcard *.c) $(wildcard get_next_line/*.c)
 
 OBJ = $(SOURCES:.c=.o)
 
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g -Iincs -Imlx_Linux -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -Iincs -Imlx_Linux #-fsanitize=address
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -Iincs -c $< -o $@
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -Iincs -O0 -c $< -o $@
 
 all: $(NAME)
 
@@ -42,7 +43,7 @@ $(NAME): $(OBJ)
 
 clean:
 	cd mlx_linux/ && make clean
-	rm -f *.o
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)

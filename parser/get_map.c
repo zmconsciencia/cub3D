@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:16:10 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/29 17:41:44 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:46:15 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	get_textures(char **split)
 	if (matrix_size(split, 'y') > 2)
 	{
 		free (split);
-		exit_free("Error: Invalid arguments\n"); // too many arguments -> exit free
+		exit_free("Error: Invalid arguments\n");
 	}
 	return (1);
 }
@@ -124,37 +124,52 @@ char	*join_arguments(char **split)
 	while(split[++i])
 	{
 		tmp = ft_strjoin(join, split[i]);
-		printf("First Temp: %s\n", tmp);
 		if (join)
 			free(join);
 		if (tmp)
 			join = ft_strdup(tmp);
 		free (tmp);
 	}
-	printf("join after [%s]\n", join);
 	return (join);
+}
+int	convert_color(char **color)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = 0;
+	g = 0;
+	b = 0;
+	if (color[0])
+		r = ft_atoi(color[0]);
+	if (color[1])
+		g = ft_atoi(color[1]);
+	if (color[2])
+		b = ft_atoi(color[2]);
+	return (((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) + (255 & 0xff));
 }
 
 int	get_colors(char **split)
 {
-	char *join;
+	char	*joined_args;
+	char	**color;
 	//printf("colors split[0] [%s]\n", split[0]);
 	check_commas(split);
 	is_valid(split);
-	join = join_arguments(split);
+	joined_args = join_arguments(split);
+	color = ft_split(joined_args, ",");
+	//printf("%d\n", ((atoi(color[0]) & 0xff) << 24) + ((atoi(color[1]) & 0xff) << 16) + ((atoi(color[2]) & 0xff) << 8) + (255 & 0xff));
 	if (!ft_strcmp(split[0], "F"))
-	{
-		printf("entrei F\n");
-	}
+		data()->map.textures.floor = convert_color(color);
 	else
-	{
-		printf("entrei F\n");
-	}
-	free(join);
+		data()->map.textures.ceiling = convert_color(color);
+	free(joined_args);
+	free_matrix(color);
 	return (1);
 }
 
-int	check_info()
+int	get_info()
 {
 	char	**split;
 	int		i;
@@ -168,14 +183,21 @@ int	check_info()
 		split = ft_split(data()->map.file[i], WHITESPACE);
 		if (split[0] && (!ft_strcmp(split[0], "F") || !ft_strcmp(split[0], "C")))
 			if (get_colors(split))
-				counter++;	
+				counter++;
 		if (get_textures(split))
 			counter++;
-		free (split);
+		if (counter > 6)
+		{
+			free_matrix(split);
+			exit_free("Error: Invalid number of arguments\n");
+		}
+		free_matrix(split);
 	}
-	/* printf("north: %s\n", map->textures.north);
-	printf("south: %s\n", map->textures.south);
-	printf("east: %s\n", map->textures.east);
-	printf("west: %s\n", map->textures.west); */
 	return (1);
 }
+	/* printf("north: %s\n", data()->map.textures.north);
+	printf("south: %s\n", data()->map.textures.south);
+	printf("east: %s\n", data()->map.textures.east);
+	printf("west: %s\n", data()->map.textures.west);
+	printf("floor: %d\n", data()->map.textures.floor);
+	printf("ceiling: %d\n", data()->map.textures.ceiling); */
