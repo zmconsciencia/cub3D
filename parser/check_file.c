@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:27:18 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/29 19:52:31 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:50:37 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	print_map(char **map)
 
 void	check_info()
 {
-	if(data()->map.textures.north || data()->map.textures.south || \
-		data()->map.textures.west || data()->map.textures.east || \
-		data()->map.textures.ceiling || data()->map.textures.floor)
+	if(!data()->map.textures.north || !data()->map.textures.south || \
+		!data()->map.textures.west || !data()->map.textures.east || \
+		!data()->map.textures.ceiling || !data()->map.textures.floor)
 	{	
 		exit_free("Error: Missing information\n");
 	}
@@ -48,13 +48,16 @@ void	check_info()
 
 int	parser(int ac, char **av)
 {
+	int	i;
+	
 	if (ac != 2)
 		return (err_msg("Wrong number of arguments\n"));
 	if (ft_strncmp(ft_strrchr(av[1], '.'), ".cub", 4))
 		return (err_msg("Error: Invalid map\n"));
-	data()->map.file = get_map(av[1]);
-	get_info();
+	data()->map.file = get_file(av[1]);
+	i = get_info();
 	check_info();
+	data()->map.map = copy_matrix(data()->map.file + i);
 	return (1);
 }
 

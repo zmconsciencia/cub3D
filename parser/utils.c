@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:05:12 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/29 10:23:23 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:51:05 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,29 @@ void	free_matrix(char **map)
 		free(map[i++]);
 	free(map);
 	map = NULL;
+}
+
+char	**copy_matrix(char **matrix)
+{
+	char	**dup;
+	int		i;
+
+	i = 0;
+	while (matrix[i])
+		i++;
+	dup = ft_calloc(i + 1, sizeof(char *));
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (matrix[i])
+	{
+		dup[i] = ft_strdup(matrix[i]);
+		if (dup[i] == NULL)
+		{
+			free_matrix(dup);
+			exit_free("Error copying matrix\n");
+		}
+		i++;
+	}
+	return (dup);
 }

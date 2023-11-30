@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/29 19:46:52 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:11:25 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_map
 {
 	char		**file;
 	t_textures	textures;
+	char		**map;
 }	t_map;
 
 typedef struct	s_data {
@@ -105,13 +106,14 @@ void paintFloor();
 void allocateMap();
 t_data	*data(void);
 char 	**create_matrix(int fd, char *path, int counter);
-char 	**get_map(char *path);
+char 	**get_file(char *path);
 int		matrix_size(char **map, char side);
 int		get_info();
 void	free_matrix(char **map);
 int		check_commas(char **split);
 void	exit_free();
 int		err_msg(char *str);
+char	**copy_matrix(char **matrix);
 
 
 #endif

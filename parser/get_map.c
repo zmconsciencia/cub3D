@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:16:10 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/29 19:46:15 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:40:51 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char **create_matrix(int fd, char *path, int counter)
 	free (str);
 	return (matrix);
 }
-char **get_map(char *path)
+char **get_file(char *path)
 {
 	int	fd;
 	char **matrix;
@@ -54,11 +54,15 @@ int	get_textures(char **split)
 		data()->map.textures.west = ft_strdup(split[1]);
 	else if (!ft_strcmp(split[0], "EA") && !data()->map.textures.east)
 		data()->map.textures.east = ft_strdup(split[1]);
-	else
-		return (0);
+	else 
+	{
+		printf("%s\n", split[0]);
+		free_matrix(split);
+		exit_free("Error: Invalid line\n");
+	}
 	if (matrix_size(split, 'y') > 2)
 	{
-		free (split);
+		free_matrix(split);
 		exit_free("Error: Invalid arguments\n");
 	}
 	return (1);
@@ -87,7 +91,7 @@ int	check_commas(char **split)
 	}
 	if (counter == 2)
 		return (1);
-	free(split);
+	free_matrix(split);
 	exit_free("Error: Invalid arguments\n");
 	return 1;
 }
@@ -132,7 +136,15 @@ char	*join_arguments(char **split)
 	}
 	return (join);
 }
-int	convert_color(char **color)
+
+int	is_within_range(int	r, int g, int b)
+{
+	if (r < 0 || g < 0 || b < 0 || r > 255 || g > 255 || b > 255)
+		return (0);
+	return (1);
+}
+
+int	convert_color(char **color, char **split)
 {
 	int	r;
 	int	g;
@@ -147,6 +159,12 @@ int	convert_color(char **color)
 		g = ft_atoi(color[1]);
 	if (color[2])
 		b = ft_atoi(color[2]);
+	free_matrix(color);
+	if (!is_within_range(r, g, b))
+	{
+		free_matrix(split);
+		exit_free("Error: Numbers are not withing the correct range\n");
+	}
 	return (((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) + (255 & 0xff));
 }
 
@@ -159,15 +177,15 @@ int	get_colors(char **split)
 	is_valid(split);
 	joined_args = join_arguments(split);
 	color = ft_split(joined_args, ",");
+	free(joined_args);
 	//printf("%d\n", ((atoi(color[0]) & 0xff) << 24) + ((atoi(color[1]) & 0xff) << 16) + ((atoi(color[2]) & 0xff) << 8) + (255 & 0xff));
 	if (!ft_strcmp(split[0], "F"))
-		data()->map.textures.floor = convert_color(color);
+		data()->map.textures.floor = convert_color(color, split);
 	else
-		data()->map.textures.ceiling = convert_color(color);
-	free(joined_args);
-	free_matrix(color);
+		data()->map.textures.ceiling = convert_color(color, split);
 	return (1);
 }
+
 
 int	get_info()
 {
@@ -179,13 +197,18 @@ int	get_info()
 	counter = 0;
 	while (data()->map.file[++i])
 	{
-		printf("map[%d] %s\n", i, data()->map.file[i]);
+		//printf("map[%d] %s\n", i, data()->map.file[i]);
 		split = ft_split(data()->map.file[i], WHITESPACE);
 		if (split[0] && (!ft_strcmp(split[0], "F") || !ft_strcmp(split[0], "C")))
-			if (get_colors(split))
-				counter++;
+			if (get_colors(split) && counter++)
+				continue;
 		if (get_textures(split))
 			counter++;
+		if (counter == 6)
+		{
+			free_matrix(split);
+			break ;
+		}
 		if (counter > 6)
 		{
 			free_matrix(split);
@@ -193,8 +216,10 @@ int	get_info()
 		}
 		free_matrix(split);
 	}
-	return (1);
+	printf("sai\n");
+	return (i);
 }
+
 	/* printf("north: %s\n", data()->map.textures.north);
 	printf("south: %s\n", data()->map.textures.south);
 	printf("east: %s\n", data()->map.textures.east);
