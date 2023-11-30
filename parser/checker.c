@@ -1,0 +1,124 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/30 12:09:47 by svalente          #+#    #+#             */
+/*   Updated: 2023/11/30 18:01:32 by svalente         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void	check_characters(char **map)
+{
+	int	i;
+	int	j;
+	int	counter;
+	
+	j = -1;
+	counter = 0;
+	while (map[++j])
+	{
+		i	= -1;
+		while (map[j][++i])
+		{
+			if (map[j][i] == 'N' || map[j][i] == 'S' || \
+				map[j][i] == 'W' || map[j][i] == 'E')
+				counter++;
+			else if (map[j][i] == '0' || map[j][i] == '1' || map[j][i] == '\n' \
+				|| map[j][i] == ' ')
+				continue ;
+			else
+				exit_free("Error: Invalid characters in map\n");
+		}
+	}
+	if (counter > 1)
+		exit_free("Error: More than one starting position\n");
+	if (counter == 0)
+		exit_free("Error: Please provide a starting position\n");
+}
+void	get_player_pos(char **map)
+{
+	int	i;
+	int	j;
+	
+	j = -1;
+	while (map[++j])
+	{
+		i	= -1;
+		while (map[j][++i])
+		{
+			if (map[j][i] == 'N' || map[j][i] == 'S' || \
+				map[j][i] == 'W' || map[j][i] == 'E')
+			{
+				data()->player.x = i;
+				data()->player.y = j;
+				data()->player.orientation = map[j][i];
+			}
+		}
+	}
+}
+
+int	map_valid(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'W' || c == 'E' || \
+		c == '1' || c == '0');
+}
+int	check_zero(char **map, int y, int x)
+{
+	// if (!map[j - 1] || 
+	// 	(i < ft_strlen(map[j - 1])) || (i < ft_strlen(map[j + 1]))  || 
+	// 	 (map[j - 1][i] && !map_valid(map[j - 1][i])) || \
+	// 	!map[j - 1][i - 1] || !map[j - 1][i + 1] || !map_valid(map[j - 1][i - 1]) || \
+	// 	!map_valid(map[j - 1][i + 1]))
+	// 	return (0);
+	// if (!map[j + 1] || !map[j + 1][i] || !map_valid(map[j + 1][i]) || \
+	// 	!map[j + 1][i - 1] || !map[j + 1][i + 1] || !map_valid(map[j + 1][i - 1]) || \
+	// 	!map_valid(map[j + 1][i + 1]))
+	// 	return (0);
+	// if (!map[j] || !map[j][i - 1] || (map[j][i - 1] && !map_valid(map[j][i - 1])))
+	// 	return (0);
+	// if (!map[j]|| !map[j][i + 1] || (map[j][i + 1] && !map_valid(map[j][i + 1])))
+	// 	return (0);
+	// return (1);
+	if (!map[y + 1] || (y - 1) < 0 || (x - 1) < 0 \
+	|| !map[y - 1][x] || !map[y][x - 1] || !map[y + 1][x] || !map[y][x + 1] \
+	|| !map[y + 1][x + 1] || !map[y - 1][x - 1] || !map[y + 1][x - 1] \
+	|| !map[y - 1][x + 1])
+		return (0);
+	if (map[y - 1][x] == ' ' || map[y][x - 1] == ' ' || map[y + 1][x] == ' ' \
+	|| map[y][x + 1] == ' ' || map[y + 1][x + 1] == ' ' \
+	|| map[y - 1][x - 1] == ' ' || map[y + 1][x - 1] == ' ' \
+	|| map[y - 1][x + 1] == ' ')
+		return (0);
+	if (map[y - 1][x] == '\n' || map[y][x - 1] == '\n' || map[y + 1][x] == '\n' \
+	|| map[y][x + 1] == '\n' || map[y + 1][x + 1] == '\n' \
+	|| map[y - 1][x - 1] == '\n' || map[y + 1][x - 1] == '\n' \
+	|| map[y - 1][x + 1] == '\n')
+		return (0);
+	return (1);
+}
+
+void	check_walls(char **map)
+{
+	int	i;
+	int	j;
+	
+	j = -1;
+	while (map[++j])
+	{
+		i	= -1;
+		while (map[j][++i])
+		{
+			if (map[j][i] == '0' || map[j][i] == data()->player.orientation)
+				if (!check_zero(map, j, i))
+				{
+					printf("\nj = %d && i = %d \n", j, i);
+					exit_free("Error: Map not surrounded by walls\n");
+				}
+		}
+	}
+}

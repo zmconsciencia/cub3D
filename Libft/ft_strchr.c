@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 14:38:55 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/28 17:41:24 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:13:46 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ char	*ft_strchr(const char *s, int c)
 	}
 	if ((unsigned char)c == '\0')
 		return ((char *)s);
+	return (NULL);
+}
+char	*ft_strchr_chars(const char *s, char *c)
+{
+	int	i;
+
+	while (*s != '\0')
+	{
+		i = -1;
+		while (c[++i])
+			if (*s == c[i])
+				return ((char *)s);
+		s++;
+	}
 	return (NULL);
 }
 

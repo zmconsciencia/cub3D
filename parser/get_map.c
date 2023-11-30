@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:16:10 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/30 11:40:51 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:04:32 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char **get_file(char *path)
 	char **matrix;
 	
 	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		exit_free("Error: opening file\n");
 	matrix = create_matrix(fd, path, 0);
 	close(fd);
 	return (matrix);
@@ -46,24 +48,27 @@ int	get_textures(char **split)
 {
 	if (!split | !split[0])
 		return (0);
-	if (!ft_strcmp(split[0], "NO") && !data()->map.textures.north)
-		data()->map.textures.north = ft_strdup(split[1]);
-	else if (!ft_strcmp(split[0], "SO") && !data()->map.textures.south)
-		data()->map.textures.south = ft_strdup(split[1]);
-	else if (!ft_strcmp(split[0], "WE") && !data()->map.textures.west)
-		data()->map.textures.west = ft_strdup(split[1]);
-	else if (!ft_strcmp(split[0], "EA") && !data()->map.textures.east)
-		data()->map.textures.east = ft_strdup(split[1]);
-	else 
+	if (split[1])
 	{
-		printf("%s\n", split[0]);
-		free_matrix(split);
-		exit_free("Error: Invalid line\n");
+		if (!ft_strcmp(split[0], "NO") && !data()->map.textures.north)
+			data()->map.textures.north = ft_strdup(split[1]);
+		else if (!ft_strcmp(split[0], "SO") && !data()->map.textures.south)
+			data()->map.textures.south = ft_strdup(split[1]);
+		else if (!ft_strcmp(split[0], "WE") && !data()->map.textures.west)
+			data()->map.textures.west = ft_strdup(split[1]);
+		else if (!ft_strcmp(split[0], "EA") && !data()->map.textures.east)
+			data()->map.textures.east = ft_strdup(split[1]);
+		else 
+		{
+			free_matrix(split);
+			exit_free("Error: Invalid line1\n");
+		}
 	}
-	if (matrix_size(split, 'y') > 2)
+	if (matrix_size(split, 'y') != 2)
 	{
+		printf("split[0] %s\n", split[0]);
 		free_matrix(split);
-		exit_free("Error: Invalid arguments\n");
+		exit_free("Error: Invalid arguments1\n");
 	}
 	return (1);
 }
@@ -110,7 +115,7 @@ int	is_valid(char **split)
 			if (!ft_isdigit(split[i][j]))
 				if (split[i][j] != ',')
 				{
-					free (split);
+					free_matrix(split);
 					exit_free("Error: Invalid arguments\n");
 				}
 		}
@@ -172,7 +177,6 @@ int	get_colors(char **split)
 {
 	char	*joined_args;
 	char	**color;
-	//printf("colors split[0] [%s]\n", split[0]);
 	check_commas(split);
 	is_valid(split);
 	joined_args = join_arguments(split);
@@ -195,28 +199,25 @@ int	get_info()
 
 	i = -1;
 	counter = 0;
+	split = NULL;
 	while (data()->map.file[++i])
 	{
-		//printf("map[%d] %s\n", i, data()->map.file[i]);
+		if (split)
+			free_matrix(split);	
+		if (counter == 6)
+			break ;
 		split = ft_split(data()->map.file[i], WHITESPACE);
 		if (split[0] && (!ft_strcmp(split[0], "F") || !ft_strcmp(split[0], "C")))
-			if (get_colors(split) && counter++)
-				continue;
+			if (get_colors(split) && ++counter)
+				continue ;
 		if (get_textures(split))
 			counter++;
-		if (counter == 6)
-		{
-			free_matrix(split);
-			break ;
-		}
 		if (counter > 6)
 		{
 			free_matrix(split);
 			exit_free("Error: Invalid number of arguments\n");
 		}
-		free_matrix(split);
 	}
-	printf("sai\n");
 	return (i);
 }
 

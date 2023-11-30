@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:27:18 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/30 11:50:37 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:49:05 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,35 @@ void	check_info()
 	}
 }
 
+int	is_space_or_01(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\r' || c == '\v' || c == '\f' \
+		|| c == '1' || c == '0' || c == '\n');
+}
+
+int	get_matrix_start(int i) 
+{
+	int	j;
+
+	while (data()->map.file[i])
+	{
+		if (ft_strchr(data()->map.file[i], '1'))
+			return (i);
+		else
+		{
+			j = -1;
+			while (data()->map.file[i][++j])
+				if (!is_space_or_01(data()->map.file[i][j]))
+				{
+					printf("Invalid line [%s] nb %d\n", data()->map.file[i], i);
+					exit_free("Error: Invalid line\n");
+				}
+		}
+		i++;
+	}
+	return (i);
+}
+
 int	parser(int ac, char **av)
 {
 	int	i;
@@ -56,8 +85,13 @@ int	parser(int ac, char **av)
 		return (err_msg("Error: Invalid map\n"));
 	data()->map.file = get_file(av[1]);
 	i = get_info();
+	i = get_matrix_start(i);
 	check_info();
 	data()->map.map = copy_matrix(data()->map.file + i);
+	print_map(data()->map.map);
+	check_characters(data()->map.map);
+	get_player_pos(data()->map.map);
+	check_walls(data()->map.map);
 	return (1);
 }
 

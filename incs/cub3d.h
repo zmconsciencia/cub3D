@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/30 11:11:25 by svalente         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:46:01 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 # include "libft.h"
 # include <stdbool.h>
 # include <stddef.h>
-
 
 typedef struct s_win {
 	void	*mlx_ptr;
@@ -75,6 +74,13 @@ typedef struct s_map
 	char		**map;
 }	t_map;
 
+typedef	struct s_player
+{
+	double	x;
+	double	y;
+	char	orientation;
+}	t_player;
+
 typedef struct	s_data {
 	t_win   window;
 	t_img   image;
@@ -84,7 +90,8 @@ typedef struct	s_data {
 	float     pdy;
 	float     pda;
 	//int     **map;
-	t_map	map;
+	t_map		map;
+	t_player	player;
 }				t_data;
 
 
@@ -114,6 +121,9 @@ int		check_commas(char **split);
 void	exit_free();
 int		err_msg(char *str);
 char	**copy_matrix(char **matrix);
+void	check_characters(char **map);
+void	get_player_pos(char **map);
+void	check_walls(char **map);
 
 
 #endif

@@ -30,7 +30,7 @@ OBJ = $(SOURCES:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g -Iincs -Imlx_Linux -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -Iincs -Imlx_Linux #-fsanitize=address
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -Iincs -O0 -c $< -o $@
