@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/28 15:31:03 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/12/01 18:29:48 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ typedef struct s_win {
     int     w;
     int     h;
 }       t_win;
-
-typedef struct s_img {
-    
+typedef struct s_img { 
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -47,19 +45,39 @@ typedef struct s_img {
     int     h;
 }   t_img;
 
-typedef struct	s_data {
-    t_win   window;
-    t_img   image;
+typedef struct s_player {
     float     px;
     float     py;
     float     pdx;
     float     pdy;
-    float     pda;
     float     planeX;
     float     planeY;
-    double    currTime;
-    double    oldTime;
-    int     **map;
+}   t_player;
+
+
+typedef struct s_raycast {
+    double  cameraX;
+    double  rayDirX;
+    double  rayDirY;
+    int     mapX;
+    int     mapY;
+    double  sideDistX;
+    double  sideDistY;
+    double  perpWallDist;
+    double  deltaDistX;
+    double  deltaDistY;
+    int     stepX;
+    int     stepY;
+    int     side;
+}       t_raycast;
+
+typedef struct	s_data {
+    t_win       window;
+    t_img       image;
+    t_img       buffer;
+    t_raycast   raycast;
+    t_player    player;
+    int         **map;
 }				t_data;
 
 //mlx utils
@@ -73,9 +91,14 @@ int exit_game();
 t_data	*data(void);
 
 //paint stuff
-void paintFloor();
+void    clearScreen(void);
+void    paintFloor(int color, int x, int drawEnd);
+void    paintCeiling(int color, int x, int drawStart);
+void    paintToWindow(void);
+void    raycastToImage(t_raycast *raycast, t_player player);
+void    raycast(t_raycast *raycast, t_player *player);
 
 //parse
-void allocateMap();
+void    allocateMap(void);
 
 #endif

@@ -2,7 +2,9 @@ NAME = cub3D
 
 SOURCES = main.c \
 			mlx_utils.c \
-			parse.c
+			parse.c \
+			paintUtils.c \
+			raycast.c
 
 OBJ = $(SOURCES:.c=.o)
 

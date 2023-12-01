@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:59:50 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/28 16:00:01 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/12/01 18:18:32 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int initial_map[24][24]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-void allocateMap() {
+void allocateMap(void)
+{
     data()->map = (int **)malloc(mapY * sizeof(int *));
     for (int i = 0; i < mapY; i++) {
         data()->map[i] = (int *)malloc(mapX * sizeof(int));
@@ -53,7 +54,7 @@ void allocateMap() {
     }
 }
 
-void paintFloor()
+void    clearScreen(void)
 {
     int x;
     int y;
@@ -61,7 +62,7 @@ void paintFloor()
     for (y = 0; y < 480; y++) {
         for (x = 0; x < 640; x++) {
             int color = 0x000000;
-            my_mlx_pixel_put(data()->image, x, y, color);
+            my_mlx_pixel_put(data()->buffer, x, y, color);
         }
     }
 }
