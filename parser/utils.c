@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:05:12 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/30 11:51:05 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:16:13 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cub3d.h"
+
+char **create_matrix(int fd, char *path, int counter)
+{
+	char	**matrix;
+	char	*str;
+
+	str = get_next_line(fd);
+	matrix = NULL;
+	if (str)
+		matrix = create_matrix(fd, path, counter + 1);
+	if (!matrix && counter > 0)
+	{
+		matrix = ft_calloc((counter + 1), sizeof(char *));
+		matrix[counter] = NULL;
+	}
+	if (str && matrix)
+		matrix[counter] = ft_strdup(str);
+	free (str);
+	return (matrix);
+}
 
 int	matrix_size(char **map, char side)
 {
@@ -25,18 +45,6 @@ int	matrix_size(char **map, char side)
 			i++;
 	}
 	return (i);
-}
-void	free_matrix(char **map)
-{
-	int	i;
-
-	i = 0;
-	if (!map)
-		return ;
-	while (map && map[i])
-		free(map[i++]);
-	free(map);
-	map = NULL;
 }
 
 char	**copy_matrix(char **matrix)
@@ -62,4 +70,40 @@ char	**copy_matrix(char **matrix)
 		i++;
 	}
 	return (dup);
+}
+
+int	err_msg(char *str)
+{
+	int i;
+
+	i = -1;
+	while (str[++i])
+		write(2, &str[i], 1);
+	return (0);
+}
+
+int	print_map(char **map)
+{
+	int i = 0;
+	
+	if(!map)
+		return (0);
+	while (map[i])
+	{
+		printf("%s", map[i]);
+		i++;
+	}
+	return(1);
+}
+void	print_parsing()
+{
+	printf("--------TEXTURES AND COLORS---------\n");
+	printf("north: \t\t[%s]\n", data()->map.textures.north);
+	printf("south: \t\t[%s]\n", data()->map.textures.south);
+	printf("east: \t\t[%s]\n", data()->map.textures.east);
+	printf("west: \t\t[%s]\n", data()->map.textures.west);
+	printf("floor: \t\t[%d]\n", data()->map.textures.floor);
+	printf("ceiling: \t[%d]\n", data()->map.textures.ceiling);
+	printf("\n---------------MAP----------------\n");
+	print_map(data()->map.map);
 }

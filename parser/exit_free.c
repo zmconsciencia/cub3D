@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:09:18 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/30 11:10:51 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 10:50:13 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,17 @@ void	exit_free(char *str)
 	if (data()->map.map)
 		free_matrix(data()->map.map);
 	exit (0);
+}
+
+void	free_matrix(char **map)
+{
+	int	i;
+
+	i = 0;
+	if (!map)
+		return ;
+	while (map && map[i])
+		free(map[i++]);
+	free(map);
+	map = NULL;
 }

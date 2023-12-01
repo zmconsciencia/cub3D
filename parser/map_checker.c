@@ -1,16 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:09:47 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/30 18:01:32 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 10:47:55 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	is_space_or_01(char c);
+
+int	get_map_start(int i) 
+{
+	int	j;
+
+	while (data()->map.file[i])
+	{
+		if (ft_strchr(data()->map.file[i], '1'))
+			return (i);
+		else
+		{
+			j = -1;
+			while (data()->map.file[i][++j])
+				if (!is_space_or_01(data()->map.file[i][j]))
+				{
+					printf("Invalid line [%s] nb %d\n", data()->map.file[i], i);
+					exit_free("Error: Invalid line\n");
+				}
+		}
+		i++;
+	}
+	return (i);
+}
+
+static int	is_space_or_01(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\r' || c == '\v' || c == '\f' \
+		|| c == '1' || c == '0' || c == '\n');
+}
 
 void	check_characters(char **map)
 {
@@ -40,6 +71,7 @@ void	check_characters(char **map)
 	if (counter == 0)
 		exit_free("Error: Please provide a starting position\n");
 }
+
 void	get_player_pos(char **map)
 {
 	int	i;
@@ -61,29 +93,8 @@ void	get_player_pos(char **map)
 		}
 	}
 }
-
-int	map_valid(char c)
-{
-	return (c == 'N' || c == 'S' || c == 'W' || c == 'E' || \
-		c == '1' || c == '0');
-}
 int	check_zero(char **map, int y, int x)
 {
-	// if (!map[j - 1] || 
-	// 	(i < ft_strlen(map[j - 1])) || (i < ft_strlen(map[j + 1]))  || 
-	// 	 (map[j - 1][i] && !map_valid(map[j - 1][i])) || \
-	// 	!map[j - 1][i - 1] || !map[j - 1][i + 1] || !map_valid(map[j - 1][i - 1]) || \
-	// 	!map_valid(map[j - 1][i + 1]))
-	// 	return (0);
-	// if (!map[j + 1] || !map[j + 1][i] || !map_valid(map[j + 1][i]) || \
-	// 	!map[j + 1][i - 1] || !map[j + 1][i + 1] || !map_valid(map[j + 1][i - 1]) || \
-	// 	!map_valid(map[j + 1][i + 1]))
-	// 	return (0);
-	// if (!map[j] || !map[j][i - 1] || (map[j][i - 1] && !map_valid(map[j][i - 1])))
-	// 	return (0);
-	// if (!map[j]|| !map[j][i + 1] || (map[j][i + 1] && !map_valid(map[j][i + 1])))
-	// 	return (0);
-	// return (1);
 	if (!map[y + 1] || (y - 1) < 0 || (x - 1) < 0 \
 	|| !map[y - 1][x] || !map[y][x - 1] || !map[y + 1][x] || !map[y][x + 1] \
 	|| !map[y + 1][x + 1] || !map[y - 1][x - 1] || !map[y + 1][x - 1] \
@@ -122,3 +133,28 @@ void	check_walls(char **map)
 		}
 	}
 }
+
+/* int	map_valid(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'W' || c == 'E' || \
+		c == '1' || c == '0');
+} */
+
+/* int	check_zero(char **map, int j, int i)
+{
+	if (!map[j - 1] || 
+		(i < ft_strlen(map[j - 1])) || (i < ft_strlen(map[j + 1]))  || 
+		 (map[j - 1][i] && !map_valid(map[j - 1][i])) || \
+		!map[j - 1][i - 1] || !map[j - 1][i + 1] || !map_valid(map[j - 1][i - 1]) || \
+		!map_valid(map[j - 1][i + 1]))
+		return (0);
+	if (!map[j + 1] || !map[j + 1][i] || !map_valid(map[j + 1][i]) || \
+		!map[j + 1][i - 1] || !map[j + 1][i + 1] || !map_valid(map[j + 1][i - 1]) || \
+		!map_valid(map[j + 1][i + 1]))
+		return (0);
+	if (!map[j] || !map[j][i - 1] || (map[j][i - 1] && !map_valid(map[j][i - 1])))
+		return (0);
+	if (!map[j]|| !map[j][i + 1] || (map[j][i + 1] && !map_valid(map[j][i + 1])))
+		return (0);
+	return (1); 
+} */

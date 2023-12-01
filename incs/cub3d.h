@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/30 16:46:01 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:14:46 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-// # include <X11/keysym.h>
-// # include <X11/X.h>
-// # include <X11/Xlib.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include <X11/Xlib.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -113,17 +113,22 @@ void paintFloor();
 void allocateMap();
 t_data	*data(void);
 char 	**create_matrix(int fd, char *path, int counter);
-char 	**get_file(char *path);
-int		matrix_size(char **map, char side);
-int		get_info();
+char	**copy_matrix(char **matrix);
 void	free_matrix(char **map);
-int		check_commas(char **split);
 void	exit_free();
 int		err_msg(char *str);
-char	**copy_matrix(char **matrix);
+int		matrix_size(char **map, char side);
+int		get_info();
 void	check_characters(char **map);
 void	get_player_pos(char **map);
 void	check_walls(char **map);
+int		get_map_start(int i);
+int		check_commas(char **split);
+char	*join_arguments(char **split);
+int		is_valid_char(char **split);
+int		check_commas(char **split);
+int		convert_color(char **color, char **split);
+void	print_parsing(); //delete later
 
 
 #endif
