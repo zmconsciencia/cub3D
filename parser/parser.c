@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:27:18 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 20:25:18 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 21:04:57 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	parser(int ac, char **av)
 		return (err_msg("Wrong number of arguments\n"));
 	if (ft_strncmp(ft_strrchr(av[1], '.'), ".cub", 4) || \
 		ft_strlen(ft_strrchr(av[1], '.')) != 4)
-		return (err_msg("Error: Invalid map\n"));
+		exit_free("Error: Invalid map extension\n");
 	data()->map.file = get_file(av[1]);
 	i = get_info();
 	i = get_map_start(i);
@@ -61,7 +61,7 @@ static void	check_info(void)
 int	main(int ac, char **av)
 {
 	parser(ac, av);
-	print_parsing();
+	//print_parsing();
 	exit_free(NULL);
 	return (0);
 }

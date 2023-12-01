@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 10:58:08 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 20:20:48 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 21:15:03 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,12 @@ int	convert_color(char **color, char **split)
 	r = 0;
 	g = 0;
 	b = 0;
+	if (!color || !color[0] || !color[1] || !color[2])
+	{
+		free_matrix(split);
+		free_matrix(color);
+		exit_free("Error: Missing color\n");
+	}
 	if (color[0])
 		r = ft_atoi(color[0]);
 	if (color[1])
@@ -108,7 +114,7 @@ int	convert_color(char **color, char **split)
 	if (color[2])
 		b = ft_atoi(color[2]);
 	free_matrix(color);
-	if (!is_within_range(r, g, b))
+	if (!is_within_range(r, g, b ))
 	{
 		free_matrix(split);
 		exit_free("Error: Numbers are not withing the correct range\n");

@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/01 20:26:42 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:32:59 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ char	*join_arguments(char **split);
 int		is_valid_char(char **split);
 int		check_commas(char **split);
 int		convert_color(char **color, char **split);
+int		is_space_or_01(char c);
 void	print_parsing(); //delete later
 
 

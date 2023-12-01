@@ -6,13 +6,13 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:09:47 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 20:22:31 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:47:13 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	is_space_or_01(char c)
+int	is_space_or_01(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\r' || c == '\v' || c == '\f' \
 		|| c == '1' || c == '0' || c == '\n');
@@ -103,7 +103,7 @@ void	check_walls(char **map)
 			if (map[j][i] == '0' || map[j][i] == data()->player.orientation)
 				if (!check_zero(map, j, i))
 				{
-					printf("\nj = %d && i = %d \n", j, i);
+					//printf("\nj = %d && i = %d \n", j, i);
 					exit_free("Error: Map not surrounded by walls\n");
 				}
 		}

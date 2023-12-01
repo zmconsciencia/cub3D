@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:16:10 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 11:09:25 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 21:01:27 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	get_info()
 	i = -1;
 	counter = 0;
 	split = NULL;
+	if (!data()->map.file || !data()->map.file[0])
+		exit_free("Error: The map is empty\n");
 	while (data()->map.file[++i])
 	{
 		if (split)
@@ -62,14 +64,13 @@ static int	get_textures(char **split)
 		else 
 		{
 			free_matrix(split);
-			exit_free("Error: Invalid line1\n");
+			exit_free("Error: Invalid line\n");
 		}
 	}
 	if (matrix_size(split, 'y') != 2)
 	{
-		printf("split[0] %s\n", split[0]);
 		free_matrix(split);
-		exit_free("Error: Invalid arguments1\n");
+		exit_free("Error: Invalid arguments\n");
 	}
 	return (1);
 }
