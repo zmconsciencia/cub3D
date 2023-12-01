@@ -6,11 +6,11 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:14:19 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/28 21:55:27 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:30:05 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, int len)
 {

@@ -6,11 +6,11 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 18:49:06 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/28 16:34:43 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:29:39 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "libft.h"
 
 int	ft_strlen(const char *s)
 {

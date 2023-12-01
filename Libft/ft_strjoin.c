@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:57:43 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/29 17:00:40 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:29:46 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -18,8 +18,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		i;
 	int		j;
 
-/* 	if (!s1 || !s2)
-		return (0); */
 	i = 0;
 	j = 0;
 	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);

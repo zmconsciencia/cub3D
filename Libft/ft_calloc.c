@@ -6,11 +6,11 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:54:42 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/28 17:38:11 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:27:02 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {

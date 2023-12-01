@@ -6,36 +6,11 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:09:47 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 10:47:55 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:22:31 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	is_space_or_01(char c);
-
-int	get_map_start(int i) 
-{
-	int	j;
-
-	while (data()->map.file[i])
-	{
-		if (ft_strchr(data()->map.file[i], '1'))
-			return (i);
-		else
-		{
-			j = -1;
-			while (data()->map.file[i][++j])
-				if (!is_space_or_01(data()->map.file[i][j]))
-				{
-					printf("Invalid line [%s] nb %d\n", data()->map.file[i], i);
-					exit_free("Error: Invalid line\n");
-				}
-		}
-		i++;
-	}
-	return (i);
-}
 
 static int	is_space_or_01(char c)
 {
@@ -48,12 +23,12 @@ void	check_characters(char **map)
 	int	i;
 	int	j;
 	int	counter;
-	
+
 	j = -1;
 	counter = 0;
 	while (map[++j])
 	{
-		i	= -1;
+		i = -1;
 		while (map[j][++i])
 		{
 			if (map[j][i] == 'N' || map[j][i] == 'S' || \
@@ -76,11 +51,11 @@ void	get_player_pos(char **map)
 {
 	int	i;
 	int	j;
-	
+
 	j = -1;
 	while (map[++j])
 	{
-		i	= -1;
+		i = -1;
 		while (map[j][++i])
 		{
 			if (map[j][i] == 'N' || map[j][i] == 'S' || \
@@ -93,6 +68,7 @@ void	get_player_pos(char **map)
 		}
 	}
 }
+
 int	check_zero(char **map, int y, int x)
 {
 	if (!map[y + 1] || (y - 1) < 0 || (x - 1) < 0 \
@@ -117,7 +93,7 @@ void	check_walls(char **map)
 {
 	int	i;
 	int	j;
-	
+
 	j = -1;
 	while (map[++j])
 	{

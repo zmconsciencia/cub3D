@@ -6,11 +6,11 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 18:35:12 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/28 16:36:06 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:29:15 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "libft.h"
 
 char	*ft_strdup(const char *s1)
 {
@@ -29,4 +29,3 @@ char	*ft_strdup(const char *s1)
 	s2[i] = '\0';
 	return (s2);
 }
-

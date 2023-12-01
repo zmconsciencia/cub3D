@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:00:54 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/29 14:56:42 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:27:44 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_isdigit(int c)
 	else
 		return (0);
 }
+
 int	ft_isalpha(int c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))

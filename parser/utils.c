@@ -6,13 +6,13 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:05:12 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 11:16:13 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 19:45:01 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/cub3d.h"
+#include "cub3d.h"
 
-char **create_matrix(int fd, char *path, int counter)
+char	**create_matrix(int fd, char *path, int counter)
 {
 	char	**matrix;
 	char	*str;
@@ -74,7 +74,7 @@ char	**copy_matrix(char **matrix)
 
 int	err_msg(char *str)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (str[++i])
@@ -84,18 +84,20 @@ int	err_msg(char *str)
 
 int	print_map(char **map)
 {
-	int i = 0;
-	
-	if(!map)
+	int	i;
+
+	i = 0;
+	if (!map)
 		return (0);
 	while (map[i])
 	{
 		printf("%s", map[i]);
 		i++;
 	}
-	return(1);
+	return (1);
 }
-void	print_parsing()
+
+void	print_parsing(void)
 {
 	printf("--------TEXTURES AND COLORS---------\n");
 	printf("north: \t\t[%s]\n", data()->map.textures.north);

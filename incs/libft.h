@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:54:28 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/30 13:10:38 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:26:22 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,5 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_atoi(const char *str);
 int		print_map(char **map); // remove
 char	*ft_strchr_chars(const char *s, char *c);
-
-//get_next_line
-char	*get_next_line(int fd);
-size_t	ft_strlen_gnl(char *s);
-char	*ft_strjoin_gnl(char *s1, char *s2);
-bool	ft_clean_buff(char *str);
 
 #endif

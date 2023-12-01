@@ -6,11 +6,11 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 17:16:47 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/28 21:58:02 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:27:59 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "libft.h"
 
 int	ft_count_words(const char *s, char *c)
 {

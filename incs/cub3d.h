@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/01 11:14:46 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:26:42 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # include <limits.h>
 # include <math.h>
 # include "libft.h"
+# include "get_next_line.h"
 # include <stdbool.h>
 # include <stddef.h>
 

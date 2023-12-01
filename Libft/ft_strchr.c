@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 14:38:55 by svalente          #+#    #+#             */
-/*   Updated: 2023/11/30 13:13:46 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:28:44 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -24,6 +24,7 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (NULL);
 }
+
 char	*ft_strchr_chars(const char *s, char *c)
 {
 	int	i;
@@ -38,23 +39,3 @@ char	*ft_strchr_chars(const char *s, char *c)
 	}
 	return (NULL);
 }
-
-/* #include <string.h>
-#include <stdio.h>
-
-int	main()
-{
-	char	*string = "Ola eu sou a Sofia.";
-	char	*first = ft_strchr(string, '\\');
-
-	printf("first:%s\n", first);
-	
-	if(first == NULL)
-		printf("Not found\n");
-}
-
-int main(int ac, char **av)
-{
-	(void)ac;
-	printf("%s\n", ft_strchr(av[1], (int) av[2]));
-}*/

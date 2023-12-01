@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 10:58:08 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 11:08:45 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/01 20:20:48 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,22 @@ int	check_commas(char **split)
 	while (split[++j])
 	{
 		i = -1;
-		while(split[j][++i])
+		while (split[j][++i])
 		{
 			if (split[j][i] == ',')
 			{
-				if (split[j][i + 1] && !ft_isspace(split[j][i + 1]) && split[j][i + 1] == ',')
+				if (split[j][i + 1] && !ft_isspace(split[j][i + 1]) \
+					&& split[j][i + 1] == ',')
 					break ;
 				counter++;
-			}	
+			}
 		}
 	}
 	if (counter == 2)
 		return (1);
 	free_matrix(split);
 	exit_free("Error: Invalid arguments\n");
-	return 1;
+	return (0);
 }
 
 int	is_valid_char(char **split)
@@ -52,11 +53,13 @@ int	is_valid_char(char **split)
 		while (split[i][++j])
 		{
 			if (!ft_isdigit(split[i][j]))
+			{
 				if (split[i][j] != ',')
 				{
 					free_matrix(split);
 					exit_free("Error: Invalid arguments\n");
 				}
+			}
 		}
 	}
 	return (1);
@@ -70,7 +73,7 @@ char	*join_arguments(char **split)
 
 	i = 0;
 	join = NULL;
-	while(split[++i])
+	while (split[++i])
 	{
 		tmp = ft_strjoin(join, split[i]);
 		if (join)
@@ -82,7 +85,7 @@ char	*join_arguments(char **split)
 	return (join);
 }
 
-int	is_within_range(int	r, int g, int b)
+int	is_within_range(int r, int g, int b)
 {
 	if (r < 0 || g < 0 || b < 0 || r > 255 || g > 255 || b > 255)
 		return (0);
@@ -110,5 +113,6 @@ int	convert_color(char **color, char **split)
 		free_matrix(split);
 		exit_free("Error: Numbers are not withing the correct range\n");
 	}
-	return (((r & 0xff) << 24) + ((g & 0xff) << 16) + ((b & 0xff) << 8) + (255 & 0xff));
+	return (((r & 0xff) << 24) + ((g & 0xff) << 16) + \
+		((b & 0xff) << 8) + (255 & 0xff));
 }
