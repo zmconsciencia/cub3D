@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:09:47 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 20:47:13 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/02 19:38:49 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,12 @@ void	check_walls(char **map)
 	j = -1;
 	while (map[++j])
 	{
-		i	= -1;
+		i = -1;
 		while (map[j][++i])
 		{
 			if (map[j][i] == '0' || map[j][i] == data()->player.orientation)
 				if (!check_zero(map, j, i))
-				{
-					//printf("\nj = %d && i = %d \n", j, i);
 					exit_free("Error: Map not surrounded by walls\n");
-				}
 		}
 	}
 }
