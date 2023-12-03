@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:27:18 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 21:04:57 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:15:03 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int	parser(int ac, char **av)
 		exit_free("Error: Invalid map extension\n");
 	data()->map.file = get_file(av[1]);
 	i = get_info();
-	i = get_map_start(i);
+	if (!data()->map.file || !data()->map.file[0])
+		exit_free("Error: The map is empty\n");
 	check_info();
+	i = get_map_start(i);
 	data()->map.map = copy_matrix(data()->map.file + i);
 	check_characters(data()->map.map);
 	get_player_pos(data()->map.map);
@@ -55,6 +57,17 @@ static void	check_info(void)
 		!data()->map.textures.ceiling || !data()->map.textures.floor)
 	{
 		exit_free("Error: Missing information\n");
+	}
+	if (ft_strncmp(ft_strrchr(data()->map.textures.north, '.'), ".xpm", 4) 
+		|| ft_strlen(ft_strrchr(data()->map.textures.north, '.')) != 4 || \
+		ft_strncmp(ft_strrchr(data()->map.textures.south, '.'), ".xpm", 4) 
+		|| ft_strlen(ft_strrchr(data()->map.textures.south, '.')) != 4 || \
+		ft_strncmp(ft_strrchr(data()->map.textures.west, '.'), ".xpm", 4) 
+		|| ft_strlen(ft_strrchr(data()->map.textures.west, '.')) != 4 || \
+		ft_strncmp(ft_strrchr(data()->map.textures.east, '.'), ".xpm", 4) 
+		|| ft_strlen(ft_strrchr(data()->map.textures.east, '.')) != 4)
+	{
+		exit_free("Error: Invalid texture extension\n");
 	}
 }
 

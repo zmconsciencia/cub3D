@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:16:10 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 21:01:27 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:11:55 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static int	get_textures(char **split);
 static int	get_colors(char **split);
+static void	free_split_exit(char **split, char *str);
 
-int	get_info()
+int	get_info(void)
 {
 	char	**split;
 	int		i;
@@ -24,8 +25,6 @@ int	get_info()
 	i = -1;
 	counter = 0;
 	split = NULL;
-	if (!data()->map.file || !data()->map.file[0])
-		exit_free("Error: The map is empty\n");
 	while (data()->map.file[++i])
 	{
 		if (split)
@@ -39,12 +38,15 @@ int	get_info()
 		if (get_textures(split))
 			counter++;
 		if (counter > 6)
-		{
-			free_matrix(split);
-			exit_free("Error: Invalid number of arguments\n");
-		}
+			free_split_exit(split, "Error: Invalid number of arguments\n");
 	}
 	return (i);
+}
+
+static void	free_split_exit(char **split, char *str)
+{
+	free_matrix(split);
+	exit_free(str);
 }
 
 static int	get_textures(char **split)
@@ -91,4 +93,3 @@ int	get_colors(char **split)
 		data()->map.textures.ceiling = convert_color(color, split);
 	return (1);
 }
-
