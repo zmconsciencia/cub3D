@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:05:12 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 19:45:01 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/04 09:23:25 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,17 @@ void	print_parsing(void)
 	printf("south: \t\t[%s]\n", data()->map.textures.south);
 	printf("east: \t\t[%s]\n", data()->map.textures.east);
 	printf("west: \t\t[%s]\n", data()->map.textures.west);
-	printf("floor: \t\t[%d]\n", data()->map.textures.floor);
-	printf("ceiling: \t[%d]\n", data()->map.textures.ceiling);
-	printf("\n---------------MAP----------------\n");
+	printf("floor: \t\t[%x]\n", data()->map.textures.floor);
+	printf("ceiling: \t[%x]\n", data()->map.textures.ceiling);
+	printf("\n---------------MAP CHAR----------------\n");
 	print_map(data()->map.map);
+	/* printf("\n---------------MAP INT----------------\n");
+	int j = -1;
+	while (data()->map.map_int[++j])
+	{
+		int i = -1;
+		while (data()->map.map_int[j][++i])
+			printf("%d", data()->map.map_int[j][i]);
+		printf("\n");
+	} */
 }

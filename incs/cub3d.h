@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/01 20:32:59 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/04 09:14:10 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_map
 	char		**file;
 	t_textures	textures;
 	char		**map;
+	int			**map_int;
 }	t_map;
 
 typedef	struct s_player
@@ -130,6 +131,7 @@ int		is_valid_char(char **split);
 int		check_commas(char **split);
 int		convert_color(char **color, char **split);
 int		is_space_or_01(char c);
+void	convert_matrix_char_to_int(void);
 void	print_parsing(); //delete later
 
 
