@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/05 15:11:59 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:26:33 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void buttons(int kp) {
         data()->player.px += data()->player.pdx;
 		data()->player.py += data()->player.pdy;
 	}
-    else if ((kp == XK_Escape))
+    else if (kp == XK_Escape)
         exit_game();
 }
 

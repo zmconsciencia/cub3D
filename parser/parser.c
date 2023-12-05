@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:27:18 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/05 14:59:01 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:27:49 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	parser(int ac, char **av)
 	int	i;
 
 	if (ac != 2)
-		return (err_msg("Wrong number of arguments\n"));
+		exit_free("Wrong number of arguments\n");
 	if (ft_strncmp(ft_strrchr(av[1], '.'), ".cub", 4) || \
 		ft_strlen(ft_strrchr(av[1], '.')) != 4)
 		exit_free("Error: Invalid map extension\n");
