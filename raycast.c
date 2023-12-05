@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:23:12 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/01 18:30:49 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:11:13 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ void performDDA(t_raycast *raycast) {
         }
         if (raycast->mapX >= 0 && raycast->mapX < data()->window.w &&
             raycast->mapY >= 0 && raycast->mapY < data()->window.h &&
-            data()->map[raycast->mapY][raycast->mapX] != 0) {
+            data()->map.map[raycast->mapY][raycast->mapX] != '0')
             hit = 1;
-        }
     }
     if (raycast->side == 0)
         raycast->perpWallDist = raycast->sideDistX - raycast->deltaDistX;
@@ -66,8 +65,8 @@ void	rayInit(t_raycast *raycast, t_player *player,int x)
 	cameraX = 2 * x / (double)data()->window.w;
     raycast->rayDirX = player->pdx + player->planeX * cameraX;
     raycast->rayDirY = player->pdy + player->planeY * cameraX;
-    raycast->mapX = (int)player->px;
-    raycast->mapY = (int)player->py;
+    raycast->mapX = (int)data()->player.px;
+    raycast->mapY = (int)data()->player.py;
     if (raycast->rayDirX == 0)
         raycast->deltaDistX = 1e30;
     else
@@ -101,8 +100,8 @@ void paintBuffer(int x, t_raycast *raycast)
         my_mlx_pixel_put(data()->buffer, x, i, 0xFF0000);
         i++;
     }
-    paintFloor(0x868686, x, drawEnd);
-    paintCeiling(0x3DD5FA, x, drawStart);
+    paintFloor(data()->map.textures.floor, x, drawEnd);
+    paintCeiling(data()->map.textures.ceiling, x, drawStart);
 }
 
 void raycast(t_raycast *raycast, t_player *player)

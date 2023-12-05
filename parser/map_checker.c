@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:09:47 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/05 11:49:25 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:10:51 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	get_player_pos(char **map)
 			if (map[j][i] == 'N' || map[j][i] == 'S' || \
 				map[j][i] == 'W' || map[j][i] == 'E')
 			{
-				data()->player.x = i;
-				data()->player.y = j;
+				data()->player.px = i;
+				data()->player.py = j;
 				data()->player.orientation = map[j][i];
 			}
 		}
