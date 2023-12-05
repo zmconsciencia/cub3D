@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/04 09:14:10 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/05 11:48:53 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ typedef struct	s_data {
 	float     pdx;
 	float     pdy;
 	float     pda;
-	//int     **map;
 	t_map		map;
 	t_player	player;
 }				t_data;
@@ -120,7 +119,7 @@ void	free_matrix(char **map);
 void	exit_free();
 int		err_msg(char *str);
 int		matrix_size(char **map, char side);
-int		get_info();
+int		get_info(void);
 void	check_characters(char **map);
 void	get_player_pos(char **map);
 void	check_walls(char **map);
@@ -132,7 +131,7 @@ int		check_commas(char **split);
 int		convert_color(char **color, char **split);
 int		is_space_or_01(char c);
 void	convert_matrix_char_to_int(void);
-void	print_parsing(); //delete later
+void	print_parsing(void); //delete later
 
 
 #endif

@@ -1,34 +1,32 @@
 NAME = cub3D
 
-# SOURCES = main.c \
-# 			mlx_utils.c \
-# 			parse.c \
-# 			get_next_line/get_next_line.c \
-# 			get_next_line/get_next_line_utils.c \
-# 			Libft/ft_calloc.c \
-# 			Libft/ft_memset.c \
-# 			Libft/ft_isspace.c \
-# 			Libft/ft_split.c \
-# 			Libft/ft_strchr.c \
-# 			Libft/ft_strcmp.c \
-# 			Libft/ft_strdup.c \
-# 			Libft/ft_strlen.c \
-# 			Libft/ft_strncmp.c \
-# 			Libft/ft_strrchr.c \
-# 			Libft/ft_substr.c \
-# 			Libft/ft_strjoin.c \
-# 			parser/parser.c \
-# 			parser/get_file_info.c \
-# 			parser/get_file_info_utils.c \
-# 			parser/utils.c \
-# 			parser/exit_free.c \
-#			parser/map_checker.c \
+SOURCES = main.c \
+			mlx_utils.c \
+			parse.c \
+			get_next_line/get_next_line.c \
+			get_next_line/get_next_line_utils.c \
+			Libft/ft_calloc.c \
+			Libft/ft_atoi.c \
+			Libft/ft_memset.c \
+			Libft/ft_isspace.c \
+			Libft/ft_split.c \
+			Libft/ft_strchr.c \
+			Libft/ft_strcmp.c \
+			Libft/ft_strdup.c \
+			Libft/ft_strlen.c \
+			Libft/ft_strncmp.c \
+			Libft/ft_strrchr.c \
+			Libft/ft_substr.c \
+			Libft/ft_strjoin.c \
+			parser/parser.c \
+			parser/get_file_info.c \
+			parser/get_file_info_utils.c \
+			parser/utils.c \
+			parser/exit_free.c \
+			parser/map_checker.c \
 
-SOURCES = $(wildcard parser/*.c) $(wildcard Libft/*.c) \
-	 $(wildcard *.c) $(wildcard get_next_line/*.c)
 
 OBJ = $(SOURCES:.c=.o)
-
 
 CC = cc
 

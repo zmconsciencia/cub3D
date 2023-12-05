@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_info_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 10:58:08 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/02 19:39:31 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:03:40 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,11 @@ int	is_within_range(int r, int g, int b)
 
 int	convert_color(char **color, char **split)
 {
-	int	r;
-	int	g;
-	int	b;
+	int	rgb[3];
 
-	r = 0;
-	g = 0;
-	b = 0;
+	rgb[0] = 0;
+	rgb[1] = 0;
+	rgb[2] = 0;
 	if (!color || !color[0] || !color[1] || !color[2])
 	{
 		free_matrix(split);
@@ -108,17 +106,17 @@ int	convert_color(char **color, char **split)
 		exit_free("Error: Missing color\n");
 	}
 	if (color[0])
-		r = ft_atoi(color[0]);
+		rgb[0] = ft_atoi(color[0]);
 	if (color[1])
-		g = ft_atoi(color[1]);
+		rgb[1] = ft_atoi(color[1]);
 	if (color[2])
-		b = ft_atoi(color[2]);
+		rgb[2] = ft_atoi(color[2]);
 	free_matrix(color);
-	if (!is_within_range(r, g, b))
+	if (!is_within_range(rgb[0], rgb[1], rgb[2]))
 	{
 		free_matrix(split);
 		exit_free("Error: Numbers are not withing the correct range\n");
 	}
-	return (((r & 0xff) << 24) + ((g & 0xff) << 16) + \
-		((b & 0xff) << 8) + (255 & 0xff));
+	return ((255 & 0xff << 24) + ((rgb[0] & 0xff) << 16) + \
+		((rgb[1] & 0xff) << 8) + ((rgb[2] & 0xff)));
 }

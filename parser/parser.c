@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:27:18 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/04 09:22:59 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:31:05 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	parser(int ac, char **av)
 	check_characters(data()->map.map);
 	get_player_pos(data()->map.map);
 	check_walls(data()->map.map);
-	//convert_matrix_char_to_int();
 	return (1);
 }
 
@@ -70,14 +69,6 @@ static void	check_info(void)
 	{
 		exit_free("Error: Invalid texture extension\n");
 	}
-}
-
-int	main(int ac, char **av)
-{
-	parser(ac, av);
-	print_parsing();
-	exit_free(NULL);
-	return (0);
 }
 
 int	get_map_start(int i)

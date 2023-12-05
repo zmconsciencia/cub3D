@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:16:10 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/03 21:11:55 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:01:20 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,29 @@ static void	free_split_exit(char **split, char *str);
 
 int	get_info(void)
 {
-	char	**split;
+	char	**sp;
 	int		i;
 	int		counter;
 
 	i = -1;
 	counter = 0;
-	split = NULL;
+	sp = NULL;
 	while (data()->map.file[++i])
 	{
-		if (split)
-			free_matrix(split);	
+		if (sp)
+			free_matrix(sp);
 		if (counter == 6)
 			break ;
-		split = ft_split(data()->map.file[i], WHITESPACE);
-		if (split[0] && (!ft_strcmp(split[0], "F") || !ft_strcmp(split[0], "C")))
-			if (get_colors(split) && ++counter)
+		sp = ft_split(data()->map.file[i], WHITESPACE);
+		if (sp[0] && (!ft_strcmp(sp[0], "F") || !ft_strcmp(sp[0], "C")))
+		{
+			if (get_colors(sp) && ++counter)
 				continue ;
-		if (get_textures(split))
+		}
+		if (get_textures(sp))
 			counter++;
 		if (counter > 6)
-			free_split_exit(split, "Error: Invalid number of arguments\n");
+			free_split_exit(sp, "Error: Invalid number of arguments\n");
 	}
 	return (i);
 }
@@ -81,15 +83,17 @@ int	get_colors(char **split)
 {
 	char	*joined_args;
 	char	**color;
+	int		result;
+
 	check_commas(split);
 	is_valid_char(split);
 	joined_args = join_arguments(split);
 	color = ft_split(joined_args, ",");
 	free(joined_args);
-	//printf("%d\n", ((atoi(color[0]) & 0xff) << 24) + ((atoi(color[1]) & 0xff) << 16) + ((atoi(color[2]) & 0xff) << 8) + (255 & 0xff));
+	result = convert_color(color, split);
 	if (!ft_strcmp(split[0], "F"))
-		data()->map.textures.floor = convert_color(color, split);
+		data()->map.textures.floor = result;
 	else
-		data()->map.textures.ceiling = convert_color(color, split);
+		data()->map.textures.ceiling = result;
 	return (1);
 }

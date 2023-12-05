@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:09:47 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/02 19:38:49 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/05 11:49:25 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,28 +106,3 @@ void	check_walls(char **map)
 		}
 	}
 }
-
-/* int	map_valid(char c)
-{
-	return (c == 'N' || c == 'S' || c == 'W' || c == 'E' || \
-		c == '1' || c == '0');
-} */
-
-/* int	check_zero(char **map, int j, int i)
-{
-	if (!map[j - 1] || 
-		(i < ft_strlen(map[j - 1])) || (i < ft_strlen(map[j + 1]))  || 
-		 (map[j - 1][i] && !map_valid(map[j - 1][i])) || \
-		!map[j - 1][i - 1] || !map[j - 1][i + 1] || !map_valid(map[j - 1][i - 1]) || \
-		!map_valid(map[j - 1][i + 1]))
-		return (0);
-	if (!map[j + 1] || !map[j + 1][i] || !map_valid(map[j + 1][i]) || \
-		!map[j + 1][i - 1] || !map[j + 1][i + 1] || !map_valid(map[j + 1][i - 1]) || \
-		!map_valid(map[j + 1][i + 1]))
-		return (0);
-	if (!map[j] || !map[j][i - 1] || (map[j][i - 1] && !map_valid(map[j][i - 1])))
-		return (0);
-	if (!map[j]|| !map[j][i + 1] || (map[j][i + 1] && !map_valid(map[j][i + 1])))
-		return (0);
-	return (1); 
-} */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:05:12 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/04 09:23:25 by svalente         ###   ########.fr       */
+/*   Updated: 2023/12/05 11:58:11 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	print_map(char **map)
 	return (1);
 }
 
-void	print_parsing(void)
+/* void	print_parsing(void)
 {
 	printf("--------TEXTURES AND COLORS---------\n");
 	printf("north: \t\t[%s]\n", data()->map.textures.north);
@@ -108,13 +108,4 @@ void	print_parsing(void)
 	printf("ceiling: \t[%x]\n", data()->map.textures.ceiling);
 	printf("\n---------------MAP CHAR----------------\n");
 	print_map(data()->map.map);
-	/* printf("\n---------------MAP INT----------------\n");
-	int j = -1;
-	while (data()->map.map_int[++j])
-	{
-		int i = -1;
-		while (data()->map.map_int[j][++i])
-			printf("%d", data()->map.map_int[j][i]);
-		printf("\n");
-	} */
-}
+} */
