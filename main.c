@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/05 15:11:59 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:29:30 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	game_loop(void *a)
 int main(int ac, char **av) {
     data()->map.map = NULL;
     data()->player.pdx = -1; data()->player.pdy = 0;
-    data()->player.planeX = 0; data()->player.planeY = 0.60000000001;
-    data()->window.w = 800;
+    data()->player.planeX = 0; data()->player.planeY = 0.66;
+    data()->window.w = 1200;
     data()->window.h = 800;
     parser(ac, av);
     data()->window = new_program(data()->window.w, data()->window.h, "cub3D");

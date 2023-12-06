@@ -32,15 +32,16 @@ OBJ = $(SOURCES:.c=.o)
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g -Iincs -Imlx_Linux -fsanitize=address
+OPTFLAGS    =   -O3 -march=native -ffast-math -funsafe-math-optimizations -ffinite-math-only -o -o1 -o2
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -Iincs -O0 -c $< -o $@
+	$(CC) $(CFLAGS) $(OPTFLAGS) -I/usr/include -Imlx_linux -Iincs -O0 -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C mlx_linux/
-	$(CC) $(CFLAGS) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(OPTFLAGS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 clean:
 	cd mlx_linux/ && make clean
