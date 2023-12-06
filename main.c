@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/06 15:29:30 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:34:38 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void buttons(int kp) {
         data()->player.px += data()->player.pdx;
 		data()->player.py += data()->player.pdy;
 	}
-    else if ((kp == XK_Escape))
+    else if (kp == XK_Escape)
         exit_game();
 }
 
