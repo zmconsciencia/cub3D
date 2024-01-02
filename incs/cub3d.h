@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/05 15:10:14 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/02 15:50:38 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
+
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.05
+# define WIN_HEIGHT 720
+# define WIN_WIDTH 1280
 
 # include "../mlx_linux/mlx.h"
 # include <stdio.h>
