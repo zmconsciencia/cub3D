@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:06:48 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/05 14:02:03 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/07 14:57:13 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,19 @@ void    paintCeiling(int color, int x, int drawStart)
 
 void    paintToWindow(void)
 {
-    int y;
-    int x;
+    t_img   tmp;
+    int     y;
+    int     x;
 
     x = 0;
     y = 0;
+    tmp = data()->image;
     while (y < data()->window.h)
     {
         x = 0;
         while(x < data()->window.w)
         {
-            my_mlx_pixel_put(data()->image, x, y, my_mlx_pixel_get((data())->buffer, x, y));
+            my_mlx_pixel_put(tmp, x, y, my_mlx_pixel_get((data())->buffer, x, y));
             x++;    
         }
         y++;

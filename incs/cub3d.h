@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/02 15:50:38 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/07 11:04:42 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,10 @@ int		is_space_or_01(char c);
 void	convert_matrix_char_to_int(void);
 int		parser(int ac, char **av);
 void	print_parsing(void); //delete later
-
+void	init_player_orientation(t_data *data);
+void	move_forward(t_data *data);
+void	move_backward(t_data *data);
+void	look_left(t_data *data);
+void	look_right(t_data *data);
 
 #endif

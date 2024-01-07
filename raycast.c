@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:23:12 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/05 15:11:13 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/07 11:55:39 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void performDDA(t_raycast *raycast) {
         }
         if (raycast->mapX >= 0 && raycast->mapX < data()->window.w &&
             raycast->mapY >= 0 && raycast->mapY < data()->window.h &&
-            data()->map.map[raycast->mapY][raycast->mapX] != '0')
+            data()->map.map[raycast->mapY][raycast->mapX] == '1')
             hit = 1;
     }
     if (raycast->side == 0)

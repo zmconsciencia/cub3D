@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/06 15:34:38 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/07 15:15:30 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,13 @@ t_data	*data(void)
 
 void buttons(int kp) {
     if ((kp == XK_d || kp == XK_Right))
-	{
-        double oldDirX = data()->player.pdx;
-        data()->player.pdx = data()->player.pdx * cos(-0.1) - data()->player.pdy * sin(-0.1);
-        data()->player.pdy = oldDirX * sin(-0.1) + data()->player.pdy * cos(-0.1);
-        double oldPlaneX = data()->player.planeX;
-        data()->player.planeX = data()->player.planeX * cos(-0.1) - data()->player.planeY * sin(-0.1);
-        data()->player.planeY = oldPlaneX * sin(-0.1) + data()->player.planeY * cos(-0.1);
-	}
+        look_right(data());
 	else if ((kp == XK_s || kp == XK_Down) && data()->map.map[(int)(data()->player.py - data()->player.pdy)][(int)(data()->player.px - data()->player.pdx)] != '1')
-	{
-		data()->player.px -= data()->player.pdx;
-		data()->player.py -= data()->player.pdy;
-	}
+        move_backward(data());
 	else if ((kp == XK_a || kp == XK_Left))
-	{
-		double oldDirX = data()->player.pdx;
-        data()->player.pdx = data()->player.pdx * cos(0.1) - data()->player.pdy * sin(0.1);
-        data()->player.pdy = oldDirX * sin(0.1) + data()->player.pdy * cos(0.1);
-        double oldPlaneX = data()->player.planeX;
-        data()->player.planeX = data()->player.planeX * cos(0.1) - data()->player.planeY * sin(0.1);
-        data()->player.planeY = oldPlaneX * sin(0.1) + data()->player.planeY * cos(0.1);
-    }
+        look_left(data());
 	else if ((kp == XK_w || kp == XK_Up) && data()->map.map[(int)(data()->player.py + data()->player.pdy)][(int)(data()->player.px + data()->player.pdx)] != '1')
-	{
-        data()->player.px += data()->player.pdx;
-		data()->player.py += data()->player.pdy;
-	}
+        move_forward(data());
     else if (kp == XK_Escape)
         exit_game();
 }
@@ -72,11 +52,10 @@ int	game_loop(void *a)
 
 int main(int ac, char **av) {
     data()->map.map = NULL;
-    data()->player.pdx = -1; data()->player.pdy = 0;
-    data()->player.planeX = 0; data()->player.planeY = 0.66;
-    data()->window.w = 1200;
-    data()->window.h = 800;
+    data()->window.w = WIN_WIDTH;
+    data()->window.h = WIN_HEIGHT;
     parser(ac, av);
+    init_player_orientation(data());
     data()->window = new_program(data()->window.w, data()->window.h, "cub3D");
     if (!data()->window.win_ptr || !data()->window.mlx_ptr)
         exit(1);
