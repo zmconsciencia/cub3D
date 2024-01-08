@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/05 15:10:14 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/07 11:51:11 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_raycast {
     int     stepX;
     int     stepY;
     int     side;
+	void	*texture;
 }       t_raycast;
 
 typedef struct s_textures
@@ -112,6 +113,7 @@ typedef struct	s_data {
 //mlx utils
 t_win	new_program(int w, int h, char *str);
 t_img	new_img(int w, int h);
+t_img	load_xpm_file(void *mlx_ptr, char *file_path);
 void	my_mlx_pixel_put(t_img data, int x, int y, int color);
 int		my_mlx_pixel_get(t_img data, int x, int y);
 int		exit_game();

@@ -2,11 +2,11 @@
 
 
 NO     ./pics/purplestone_NO.xpm
-C 247,4,4
+C 4,0,197
 SO               ./pics/purplestone_SO.xpm
 
 EA 					./pics/purplestone_EA.xpm
-F 233,60,25
+F 4,206,197
 WE ./pics/purplestone_WE.xpm
 1
 1

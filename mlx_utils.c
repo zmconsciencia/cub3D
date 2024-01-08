@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:47:38 by jabecass          #+#    #+#             */
-/*   Updated: 2023/11/24 15:55:03 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/07 11:50:56 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ t_img	new_img(int w, int h)
 	image.h = h;
 	return (image);
 }
+t_img	load_xpm_file(void *mlx_ptr, char *file_path)
+{
+	t_img	img;
+
+	img.img = mlx_xpm_file_to_image(mlx_ptr, file_path, &(img.w), &(img.h));
+	img.addr = mlx_get_data_addr(img.img, &(img.bits_per_pixel), &(img.line_length), &(img.endian));
+
+	return (img);
+}
 
 void	my_mlx_pixel_put(t_img data, int x, int y, int color)
 {
@@ -53,3 +62,4 @@ int exit_game(){
     mlx_destroy_window(data()->window.mlx_ptr, data()->window.win_ptr);
     return 0;
 }
+
