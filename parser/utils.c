@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:05:12 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/05 11:58:11 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:00:18 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,10 @@ int	print_map(char **map)
 /* void	print_parsing(void)
 {
 	printf("--------TEXTURES AND COLORS---------\n");
-	printf("north: \t\t[%s]\n", data()->map.textures.north);
-	printf("south: \t\t[%s]\n", data()->map.textures.south);
-	printf("east: \t\t[%s]\n", data()->map.textures.east);
-	printf("west: \t\t[%s]\n", data()->map.textures.west);
+	printf("north: \t\t[%s]\n", data()->map.textures.north.path);
+	printf("south: \t\t[%s]\n", data()->map.textures.south.path);
+	printf("east: \t\t[%s]\n", data()->map.textures.east.path);
+	printf("west: \t\t[%s]\n", data()->map.textures.west.path);
 	printf("floor: \t\t[%x]\n", data()->map.textures.floor);
 	printf("ceiling: \t[%x]\n", data()->map.textures.ceiling);
 	printf("\n---------------MAP CHAR----------------\n");

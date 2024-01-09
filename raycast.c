@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:23:12 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/08 15:03:18 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:23:14 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,9 @@ void	rayInit(t_raycast *raycast, t_player *player,int x)
 		raycast->deltaDistY = fabs(1 / raycast->rayDirY);
 }
 
-void	paint_wall(t_raycast *raycast, int lineHeight, int drawStart, int drawEnd, int x, t_img img, int i)
+
+
+void	paint_wall(t_raycast *raycast, int lineHeight, int drawStart, int drawEnd, int x, int i)
 {
 	int color;
 	double wall_x;
@@ -92,7 +94,7 @@ void	paint_wall(t_raycast *raycast, int lineHeight, int drawStart, int drawEnd, 
 		wall_x = data()->player.px + raycast->perpWallDist * raycast->rayDirX;
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * 64.0);
-	printf("raydirX %f raydirY %f\n", raycast->rayDirX, raycast->rayDirY);
+	//printf("raydirX %f raydirY %f\n", raycast->rayDirX, raycast->rayDirY);
 	if ((raycast->side == 0 && raycast->rayDirX > 0) || (raycast->side == 1 && raycast->rayDirY < 0))
 		tex_x = 64 - tex_x - 1;
 	step = 1.0 * (64) / lineHeight;
@@ -101,13 +103,13 @@ void	paint_wall(t_raycast *raycast, int lineHeight, int drawStart, int drawEnd, 
 	{
 		tex_y = (int)tex_pos & (64 - 1);
 		tex_pos += step;
-		color = my_mlx_pixel_get(img, tex_x, tex_y);
+		color = my_mlx_pixel_get(data()->map.textures.north.asset, tex_x, tex_y);
 		my_mlx_pixel_put(data()->buffer, x, i, color);         
 		i++;
 	}
 }
 
-void	paintBuffer(int x, t_raycast *raycast, t_img img)
+void	paintBuffer(int x, t_raycast *raycast)
 {
 	int lineHeight;
 	int drawStart;
@@ -126,9 +128,21 @@ void	paintBuffer(int x, t_raycast *raycast, t_img img)
 	}
 	if (drawEnd > data()->window.h)
 		drawEnd = data()->window.h;
-	paint_wall(raycast, lineHeight, drawStart, drawEnd, x, img, i);
+	paint_wall(raycast, lineHeight, drawStart, drawEnd, x, i);
 	paintFloor(data()->map.textures.floor, x, drawEnd);
 	paintCeiling(data()->map.textures.ceiling, x, drawStart);
+}
+
+void load_images()
+{
+	data()->map.textures.north.asset = load_xpm_file(data()->window.mlx_ptr, 
+		data()->map.textures.north.path);
+	data()->map.textures.south.asset = load_xpm_file(data()->window.mlx_ptr, 
+		data()->map.textures.south.path);
+	data()->map.textures.west.asset = load_xpm_file(data()->window.mlx_ptr, 
+		data()->map.textures.west.path);
+	data()->map.textures.east.asset = load_xpm_file(data()->window.mlx_ptr, 
+		data()->map.textures.east.path);
 }
 
 void raycast(t_raycast *raycast, t_player *player)
@@ -136,13 +150,13 @@ void raycast(t_raycast *raycast, t_player *player)
 	int x;
 
 	x = 0;
-	t_img img = load_xpm_file(data()->window.mlx_ptr, "./pics/wood.xpm");
+	load_images();
 	while (x < data()->window.w)
 	{
 		rayInit(raycast, player, x);
 		calculateStepAndSideDist(raycast, player);
 		performDDA(raycast);
-		paintBuffer(x, raycast, img);
+		paintBuffer(x, raycast);
 		x++;
 	}
 	paintToWindow();

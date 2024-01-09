@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:09:18 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 10:50:13 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:00:18 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	exit_free(char *str)
 		err_msg(str);
 	if (data()->map.file)
 		free_matrix(data()->map.file);
-	if (data()->map.textures.north)
-		free(data()->map.textures.north);
-	if (data()->map.textures.south)
-		free(data()->map.textures.south);
-	if (data()->map.textures.west)
-		free(data()->map.textures.west);
-	if (data()->map.textures.east)
-		free(data()->map.textures.east);
+	if (data()->map.textures.north.path)
+		free(data()->map.textures.north.path);
+	if (data()->map.textures.south.path)
+		free(data()->map.textures.south.path);
+	if (data()->map.textures.west.path)
+		free(data()->map.textures.west.path);
+	if (data()->map.textures.east.path)
+		free(data()->map.textures.east.path);
 	if (data()->map.map)
 		free_matrix(data()->map.map);
 	exit (0);

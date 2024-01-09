@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/07 11:51:11 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:09:41 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,20 @@ typedef struct s_raycast {
 	void	*texture;
 }       t_raycast;
 
+typedef struct s_texture
+{
+	char	*path;
+	t_img	asset;
+}	t_texture;
+
 typedef struct s_textures
 {
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
-	int		floor;
-	int		ceiling;
+	t_texture	north;
+	t_texture	south;
+	t_texture	west;
+	t_texture	east;
+	int			floor;
+	int			ceiling;
 }	t_textures;
 
 typedef struct s_map
@@ -96,7 +102,6 @@ typedef struct s_map
 	char		**file;
 	t_textures	textures;
 	char		**map;
-	int			**map_int;
 }	t_map;
 
 typedef struct	s_data {

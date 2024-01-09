@@ -1,18 +1,17 @@
 
 
-
-NO     ./pics/purplestone_NO.xpm
+   NO    ./pics/wood.xpm
 C 4,0,197
-SO               ./pics/purplestone_SO.xpm
+SO       	     ./pics/wood.xpm
 
-EA 					./pics/purplestone_EA.xpm
-F 4,206,197
-WE ./pics/purplestone_WE.xpm
+EA 					./pics/wood.xpm
+F 4,   2 0 6 ,    1 9 7
+WE ./pics/wood.xpm
 1
 1
 1
 1   1111111111111111111111111
-1   1111111111111111011111111
+1   1111111111111111011111011
 1   1111111111111111111111111
 1   1000000000110000000000001
 1   1011000001110000000000001
