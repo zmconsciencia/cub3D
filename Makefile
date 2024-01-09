@@ -34,7 +34,7 @@ OBJ = $(SOURCES:.c=.o)
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g -Iincs -Imlx_Linux #-fsanitize=address
-OPTFLAGS    =   -O3 -march=native -ffast-math -funsafe-math-optimizations -ffinite-math-only -o -o1 -o2
+OPTFLAGS    =   -O3 -march=native -ffast-math -funsafe-math-optimizations -ffinite-math-only
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(OPTFLAGS) -I/usr/include -Imlx_linux -Iincs -O0 -c $< -o $@

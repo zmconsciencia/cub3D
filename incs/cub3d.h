@@ -168,5 +168,6 @@ void	move_forward(t_data *data);
 void	move_backward(t_data *data);
 void	look_left(t_data *data);
 void	look_right(t_data *data);
+void	draw_minimap(t_data *data);
 
 #endif

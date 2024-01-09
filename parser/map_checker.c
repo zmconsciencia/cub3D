@@ -61,9 +61,10 @@ void	get_player_pos(char **map)
 			if (map[j][i] == 'N' || map[j][i] == 'S' || \
 				map[j][i] == 'W' || map[j][i] == 'E')
 			{
-				data()->player.px = i;
-				data()->player.py = j;
+				data()->player.px = i + 0.5f;
+				data()->player.py = j + 0.5f;
 				data()->player.orientation = map[j][i];
+				map[j][i] = '0';
 			}
 		}
 	}

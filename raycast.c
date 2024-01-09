@@ -49,7 +49,7 @@ void performDDA(t_raycast *raycast) {
         }
         if (raycast->mapX >= 0 && raycast->mapX < data()->window.w &&
             raycast->mapY >= 0 && raycast->mapY < data()->window.h &&
-            data()->map.map[raycast->mapY][raycast->mapX] != '0')
+            data()->map.map[raycast->mapY][raycast->mapX] == '1')
             hit = 1;
     }
     if (raycast->side == 0)
@@ -62,7 +62,7 @@ void	rayInit(t_raycast *raycast, t_player *player,int x)
 {
 	double	cameraX;
 
-	cameraX = 2 * x / (double)data()->window.w;
+	cameraX = 2 * x / (double)data()->window.w - 1;
 	raycast->rayDirX = player->pdx + player->planeX * cameraX;
 	raycast->rayDirY = player->pdy + player->planeY * cameraX;
 	raycast->mapX = (int)data()->player.px;
@@ -140,12 +140,15 @@ void	paint_wall(t_raycast *raycast, int lineHeight, int drawStart, int drawEnd, 
 
 void	paintBuffer(int x, t_raycast *raycast)
 {
-	int lineHeight;
-	int drawStart;
-	int drawEnd;
-	int i;
+	double lineHeight;
+	double drawStart;
+	double drawEnd;
+	double i;
 
-	lineHeight = (int)(data()->window.h / raycast->perpWallDist);
+	if (raycast->perpWallDist > 0)
+		lineHeight = (int)(data()->window.h / raycast->perpWallDist);
+	else
+		lineHeight = (int)WIN_HEIGHT;
 	drawStart = -lineHeight / 2 + data()->window.h / 2;
 	drawEnd = lineHeight / 2 + data()->window.h / 2;
 	i = drawStart;
@@ -159,6 +162,7 @@ void	paintBuffer(int x, t_raycast *raycast)
 	paint_wall(raycast, lineHeight, drawStart, drawEnd, x, i);
 	paintFloor(data()->map.textures.floor, x, drawEnd);
 	paintCeiling(data()->map.textures.ceiling, x, drawStart);
+	draw_minimap(data());
 }
 
 void load_images()

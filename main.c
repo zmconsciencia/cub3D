@@ -22,11 +22,11 @@ t_data	*data(void)
 void buttons(int kp) {
     if ((kp == XK_d || kp == XK_Right))
         look_right(data());
-	else if ((kp == XK_s || kp == XK_Down) && data()->map.map[(int)(data()->player.py - data()->player.pdy)][(int)(data()->player.px - data()->player.pdx)] != '1')
+	else if ((kp == XK_s || kp == XK_Down))
         move_backward(data());
 	else if ((kp == XK_a || kp == XK_Left))
         look_left(data());
-	else if ((kp == XK_w || kp == XK_Up) && data()->map.map[(int)(data()->player.py + data()->player.pdy)][(int)(data()->player.px + data()->player.pdx)] != '1')
+	else if ((kp == XK_w || kp == XK_Up))
         move_forward(data());
     else if (kp == XK_Escape)
         exit_game();
