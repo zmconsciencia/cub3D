@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/07 11:04:42 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/09 16:15:10 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # define BACK 0xc0e070
 # define WHITESPACE " \t\n\r\v\f"
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -85,14 +89,20 @@ typedef struct s_raycast {
     int     side;
 }       t_raycast;
 
+typedef struct s_texture
+{
+	char	*path;
+	t_img	asset;
+}	t_texture;
+
 typedef struct s_textures
 {
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
-	int		floor;
-	int		ceiling;
+	t_texture	north;
+	t_texture	south;
+	t_texture	west;
+	t_texture	east;
+	int			floor;
+	int			ceiling;
 }	t_textures;
 
 typedef struct s_map
@@ -100,7 +110,6 @@ typedef struct s_map
 	char		**file;
 	t_textures	textures;
 	char		**map;
-	int			**map_int;
 }	t_map;
 
 typedef struct	s_data {
@@ -117,6 +126,7 @@ typedef struct	s_data {
 //mlx utils
 t_win	new_program(int w, int h, char *str);
 t_img	new_img(int w, int h);
+t_img	load_xpm_file(void *mlx_ptr, char *file_path);
 void	my_mlx_pixel_put(t_img data, int x, int y, int color);
 int		my_mlx_pixel_get(t_img data, int x, int y);
 int		exit_game();

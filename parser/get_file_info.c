@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:16:10 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/05 12:01:20 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:00:18 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ static int	get_textures(char **split)
 		return (0);
 	if (split[1])
 	{
-		if (!ft_strcmp(split[0], "NO") && !data()->map.textures.north)
-			data()->map.textures.north = ft_strdup(split[1]);
-		else if (!ft_strcmp(split[0], "SO") && !data()->map.textures.south)
-			data()->map.textures.south = ft_strdup(split[1]);
-		else if (!ft_strcmp(split[0], "WE") && !data()->map.textures.west)
-			data()->map.textures.west = ft_strdup(split[1]);
-		else if (!ft_strcmp(split[0], "EA") && !data()->map.textures.east)
-			data()->map.textures.east = ft_strdup(split[1]);
+		if (!ft_strcmp(split[0], "NO") && !data()->map.textures.north.path)
+			data()->map.textures.north.path = ft_strdup(split[1]);
+		else if (!ft_strcmp(split[0], "SO") && !data()->map.textures.south.path)
+			data()->map.textures.south.path = ft_strdup(split[1]);
+		else if (!ft_strcmp(split[0], "WE") && !data()->map.textures.west.path)
+			data()->map.textures.west.path = ft_strdup(split[1]);
+		else if (!ft_strcmp(split[0], "EA") && !data()->map.textures.east.path)
+			data()->map.textures.east.path = ft_strdup(split[1]);
 		else 
 		{
 			free_matrix(split);
