@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2023/12/06 15:34:38 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:16:20 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void paintCanva() {
 
 int move(int kp) {
     buttons(kp);
-    paintCanva();
     return (0);
 }
 
 int	game_loop(void *a)
 {
 	(void) a;
+    paintCanva();
 	return (0);
 }
 

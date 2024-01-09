@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:23:12 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/09 12:23:14 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:57:17 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,36 @@ void	rayInit(t_raycast *raycast, t_player *player,int x)
 		raycast->deltaDistY = fabs(1 / raycast->rayDirY);
 }
 
+int	get_wall_dir()
+{
+	if (data()->raycast.side == 0)
+	{
+		if (data()->raycast.rayDirX < 0)
+			data()->raycast.side = WE;
+		else
+			data()->raycast.side = EA;
+	}
+	else
+	{	
+		if (data()->raycast.rayDirY < 0)
+			data()->raycast.side = SO;
+		else
+			data()->raycast.side = NO;
+	}
+	return (data()->raycast.side);
+}
 
+t_img	correct_texture()
+{
+	if (data()->raycast.side == NO)
+		return (data()->map.textures.north.asset);
+	else if (data()->raycast.side == SO)
+		return (data()->map.textures.south.asset);
+	else if (data()->raycast.side == WE)
+		return (data()->map.textures.west.asset);
+	else
+		return (data()->map.textures.east.asset);
+}
 
 void	paint_wall(t_raycast *raycast, int lineHeight, int drawStart, int drawEnd, int x, int i)
 {
@@ -103,7 +132,7 @@ void	paint_wall(t_raycast *raycast, int lineHeight, int drawStart, int drawEnd, 
 	{
 		tex_y = (int)tex_pos & (64 - 1);
 		tex_pos += step;
-		color = my_mlx_pixel_get(data()->map.textures.north.asset, tex_x, tex_y);
+		color = my_mlx_pixel_get(correct_texture(), tex_x, tex_y);
 		my_mlx_pixel_put(data()->buffer, x, i, color);         
 		i++;
 	}
@@ -115,7 +144,6 @@ void	paintBuffer(int x, t_raycast *raycast)
 	int drawStart;
 	int drawEnd;
 	int i;
-
 
 	lineHeight = (int)(data()->window.h / raycast->perpWallDist);
 	drawStart = -lineHeight / 2 + data()->window.h / 2;

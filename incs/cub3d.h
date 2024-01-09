@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/09 12:09:41 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:48:49 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # define BACK 0xc0e070
 # define WHITESPACE " \t\n\r\v\f"
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -78,7 +82,6 @@ typedef struct s_raycast {
     int     stepX;
     int     stepY;
     int     side;
-	void	*texture;
 }       t_raycast;
 
 typedef struct s_texture
