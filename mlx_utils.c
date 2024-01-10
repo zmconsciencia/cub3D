@@ -61,6 +61,10 @@ int exit_game(t_win *win)
 {
 	if (win)
 	{
+		mlx_destroy_image(data()->window.mlx_ptr, data()->map.textures.north.asset.img);
+		mlx_destroy_image(data()->window.mlx_ptr, data()->map.textures.south.asset.img);
+		mlx_destroy_image(data()->window.mlx_ptr, data()->map.textures.west.asset.img);
+		mlx_destroy_image(data()->window.mlx_ptr, data()->map.textures.east.asset.img);
 		mlx_destroy_image(data()->window.mlx_ptr, data()->buffer.img);
 		mlx_destroy_image(data()->window.mlx_ptr, data()->image.img);
 		mlx_destroy_window(data()->window.mlx_ptr, data()->window.win_ptr);

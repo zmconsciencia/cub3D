@@ -61,6 +61,7 @@ int main(int ac, char **av) {
         exit(1);
     data()->image = new_img(data()->window.w, data()->window.h);
     data()->buffer = new_img(data()->window.w, data()->window.h);
+	load_images();
     paintCanva();
     mlx_hook(data()->window.win_ptr, 2, 1L << 0, move, data());
     mlx_hook(data()->window.win_ptr, 17, 0, exit_game, data());
