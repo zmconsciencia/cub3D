@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:09:18 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/09 16:16:31 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:55:42 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	exit_free(char *str)
 		free(data()->map.textures.east.path);
 	if (data()->map.map)
 		free_matrix(data()->map.map);
+	//exit(EXIT_FAILURE);
 }
 
 void	free_matrix(char **map)

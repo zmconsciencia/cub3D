@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:27:18 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/09 12:00:18 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:53:37 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	parser(int ac, char **av)
 	check_characters(data()->map.map);
 	get_player_pos(data()->map.map);
 	check_walls(data()->map.map);
+	if (!files_access())
+		exit_free("Error: No access to texture files\n");
 	return (1);
 }
 
