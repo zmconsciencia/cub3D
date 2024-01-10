@@ -25,6 +25,7 @@ SOURCES = main.c \
 			parser/utils.c \
 			parser/exit_free.c \
 			parser/map_checker.c \
+			parser/check_access.c \
 			init_orientation.c \
 			move.c \
 
@@ -33,7 +34,7 @@ OBJ = $(SOURCES:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g -Iincs -Imlx_Linux #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -Iincs -Imlx_Linux -fsanitize=address
 OPTFLAGS    =   -O3 -march=native -ffast-math -funsafe-math-optimizations -ffinite-math-only
 
 %.o: %.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/09 16:15:10 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:31:30 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define WHITESPACE " \t\n\r\v\f"
 # define NO 0
 # define SO 1
-# define WE 2
-# define EA 3
+# define EA 2
+# define WE 3
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -141,6 +141,7 @@ void    paintCeiling(int color, int x, int drawStart);
 void    paintToWindow(void);
 void    raycastToImage(t_raycast *raycast, t_player player);
 void    raycast(t_raycast *raycast, t_player *player);
+void	load_images();
 
 //parse
 char 	**create_matrix(int fd, char *path, int counter);
@@ -168,6 +169,7 @@ void	move_forward(t_data *data);
 void	move_backward(t_data *data);
 void	look_left(t_data *data);
 void	look_right(t_data *data);
+int		files_access();
 void	draw_minimap(t_data *data);
 
 #endif

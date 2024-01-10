@@ -79,30 +79,36 @@ void	rayInit(t_raycast *raycast, t_player *player,int x)
 
 int	get_wall_dir()
 {
+	int	dir;
+
+	dir = -1;
 	if (data()->raycast.side == 0)
 	{
 		if (data()->raycast.rayDirX < 0)
-			data()->raycast.side = WE;
+			dir = WE;
 		else
-			data()->raycast.side = EA;
+			dir = EA;
 	}
 	else
 	{	
 		if (data()->raycast.rayDirY < 0)
-			data()->raycast.side = SO;
+			dir = NO;
 		else
-			data()->raycast.side = NO;
+			dir = SO;
 	}
-	return (data()->raycast.side);
+	return (dir);
 }
 
 t_img	correct_texture()
 {
-	if (data()->raycast.side == NO)
+	int	dir;
+
+	dir = get_wall_dir();
+	if (dir == NO)
 		return (data()->map.textures.north.asset);
-	else if (data()->raycast.side == SO)
+	else if (dir == SO)
 		return (data()->map.textures.south.asset);
-	else if (data()->raycast.side == WE)
+	else if (dir == WE)
 		return (data()->map.textures.west.asset);
 	else
 		return (data()->map.textures.east.asset);
@@ -110,7 +116,7 @@ t_img	correct_texture()
 
 void	paint_wall(t_raycast *raycast, int lineHeight, int drawStart, int drawEnd, int x, int i)
 {
-	int color;
+	//int color;
 	double wall_x;
 	int tex_x;
 	int tex_y;
@@ -123,7 +129,6 @@ void	paint_wall(t_raycast *raycast, int lineHeight, int drawStart, int drawEnd, 
 		wall_x = data()->player.px + raycast->perpWallDist * raycast->rayDirX;
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * 64.0);
-	//printf("raydirX %f raydirY %f\n", raycast->rayDirX, raycast->rayDirY);
 	if ((raycast->side == 0 && raycast->rayDirX > 0) || (raycast->side == 1 && raycast->rayDirY < 0))
 		tex_x = 64 - tex_x - 1;
 	step = 1.0 * (64) / lineHeight;
@@ -132,8 +137,8 @@ void	paint_wall(t_raycast *raycast, int lineHeight, int drawStart, int drawEnd, 
 	{
 		tex_y = (int)tex_pos & (64 - 1);
 		tex_pos += step;
-		color = my_mlx_pixel_get(correct_texture(), tex_x, tex_y);
-		my_mlx_pixel_put(data()->buffer, x, i, color);         
+		//color = my_mlx_pixel_get(correct_texture(), tex_x, tex_y);
+		my_mlx_pixel_put(data()->buffer, x, i, my_mlx_pixel_get(correct_texture(), tex_x, tex_y));         
 		i++;
 	}
 }
@@ -182,7 +187,6 @@ void raycast(t_raycast *raycast, t_player *player)
 	int x;
 
 	x = 0;
-	load_images();
 	while (x < data()->window.w)
 	{
 		rayInit(raycast, player, x);
