@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/09 16:15:10 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 12:18:57 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,5 +169,7 @@ void	move_backward(t_data *data);
 void	look_left(t_data *data);
 void	look_right(t_data *data);
 void	draw_minimap(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
 
 #endif

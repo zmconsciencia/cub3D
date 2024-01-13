@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/09 16:14:23 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 12:18:29 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,18 @@ t_data	*data(void)
 }
 
 void buttons(int kp) {
-    if ((kp == XK_d || kp == XK_Right))
+    if (kp == XK_Right)
         look_right(data());
 	else if ((kp == XK_s || kp == XK_Down))
         move_backward(data());
-	else if ((kp == XK_a || kp == XK_Left))
+	else if (kp == XK_Left)
         look_left(data());
 	else if ((kp == XK_w || kp == XK_Up))
         move_forward(data());
+    else if (kp == XK_a)
+        move_left(data());
+    else if (kp == XK_d)
+        move_right(data());
     else if (kp == XK_Escape)
         exit_game();
 }
