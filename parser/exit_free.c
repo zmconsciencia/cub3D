@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:09:18 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/13 18:01:10 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:19:01 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int exit_game(t_win *win)
 		mlx_destroy_image(data()->window.mlx_ptr, \
 			data()->map.textures.east.asset.img);
 		mlx_destroy_image(data()->window.mlx_ptr, data()->buffer.img);
-		mlx_destroy_image(data()->window.mlx_ptr, data()->image.img);
 		mlx_destroy_window(data()->window.mlx_ptr, data()->window.win_ptr);
 		mlx_destroy_display(data()->window.mlx_ptr);
 		free_all();

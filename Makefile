@@ -36,7 +36,7 @@ OBJ = $(SOURCES:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g -Iincs -Imlx_Linux #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -Iincs -Imlx_Linux -fsanitize=address
 OPTFLAGS    =   -O3 -march=native -ffast-math -funsafe-math-optimizations -ffinite-math-only
 
 %.o: %.c

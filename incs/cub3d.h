@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 15:22:58 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/13 17:59:42 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:14:47 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,5 +176,6 @@ int		files_access(void);
 void	draw_minimap(t_data *data);
 void	move_left(t_data *data);
 void	move_right(t_data *data);
+void	buttons(int kp);
 
 #endif
