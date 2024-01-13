@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:09:18 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/13 18:19:01 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:39:33 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	free_matrix(char **map)
 	map = NULL;
 }
 
-int exit_game(t_win *win)
+int	exit_game(t_win *win)
 {
 	if (win)
 	{

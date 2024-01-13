@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:23:12 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/13 17:57:19 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:38:52 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,6 @@ void	dda(t_raycast *raycast)
 			&& data()->map.map[raycast->map_y][raycast->map_x] == '1')
 			hit = 1;
 	}
-	if (raycast->side == 0)
-		raycast->w_dist = raycast->s_dist_x - raycast->d_dist_x;
-	else
-		raycast->w_dist = raycast->s_dist_y - raycast->d_dist_y;
 }
 
 void	ray_init(t_raycast *raycast, t_player *player, int x)
@@ -120,6 +116,10 @@ void	raycast(t_raycast *raycast, t_player *player)
 		ray_init(raycast, player, x);
 		calc_dist_and_step(raycast, player);
 		dda(raycast);
+		if (raycast->side == 0)
+			raycast->w_dist = raycast->s_dist_x - raycast->d_dist_x;
+		else
+			raycast->w_dist = raycast->s_dist_y - raycast->d_dist_y;
 		paint_buffer(x, raycast);
 		x++;
 	}
