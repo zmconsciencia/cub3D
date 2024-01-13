@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 15:41:33 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/13 13:09:01 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:37:39 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	move_forward(t_data *data)
 {
-	if (data->map.map[(int)(data->player.py + data->player.pdy * MOVE_SPEED)][(int)(data->player.px + data->player.pdx * MOVE_SPEED)] == '0')
+	if (data->map.map[(int)(data->player.py + data->player.pdy * MOVE_SPEED)] \
+		[(int)(data->player.px + data->player.pdx * MOVE_SPEED)] == '0')
 	{
 		data->player.px += data->player.pdx * MOVE_SPEED;
 		data->player.py += data->player.pdy * MOVE_SPEED;
@@ -23,47 +24,48 @@ void	move_forward(t_data *data)
 
 void	move_backward(t_data *data)
 {
-	if (data->map.map[(int)(data->player.py - data->player.pdy * MOVE_SPEED)][(int)(data->player.px - data->player.pdx * MOVE_SPEED)] == '0')
+	if (data->map.map[(int)(data->player.py - data->player.pdy * MOVE_SPEED)] \
+		[(int)(data->player.px - data->player.pdx * MOVE_SPEED)] == '0')
 	{
 		data->player.px -= data->player.pdx * MOVE_SPEED;
 		data->player.py -= data->player.pdy * MOVE_SPEED;
 	}
 }
 
-void    move_left(t_data *data)
+void	move_left(t_data *data)
 {
-	if (data->map.map[(int)(data->player.py - data->player.pdx * MOVE_SPEED)][(int)(data->player.px + data->player.pdy * MOVE_SPEED)] == '0')
+	if (data->map.map[(int)(data->player.py - data->player.pdx * MOVE_SPEED)] \
+		[(int)(data->player.px + data->player.pdy * MOVE_SPEED)] == '0')
 	{
-		data->player.px -= data->player.planeX * MOVE_SPEED;
-		data->player.py -= data->player.planeY * MOVE_SPEED;
+		data->player.px -= data->player.plane_x * MOVE_SPEED;
+		data->player.py -= data->player.plane_y * MOVE_SPEED;
 	}
 }
 
-void move_right(t_data *data)
+void	move_right(t_data *data)
 {
-	if (data->map.map[(int)(data->player.py + data->player.pdx * MOVE_SPEED)][(int)(data->player.px - data->player.pdy * MOVE_SPEED)] == '0')
+	if (data->map.map[(int)(data->player.py + data->player.pdx * MOVE_SPEED)] \
+		[(int)(data->player.px - data->player.pdy * MOVE_SPEED)] == '0')
 	{
-		data->player.px += data->player.planeX * MOVE_SPEED;
-		data->player.py += data->player.planeY * MOVE_SPEED;
+		data->player.px += data->player.plane_x * MOVE_SPEED;
+		data->player.py += data->player.plane_y * MOVE_SPEED;
 	}
 }
 
-void	look_left(t_data *data)
+void	buttons(int kp)
 {
-	double oldDirX = data->player.pdx;
-	data->player.pdx = data->player.pdx * cos(-MOVE_SPEED) - data->player.pdy * sin(-MOVE_SPEED);
-	data->player.pdy = oldDirX * sin(-MOVE_SPEED) + data->player.pdy * cos(-MOVE_SPEED);
-	double oldPlaneX = data->player.planeX;
-	data->player.planeX = data->player.planeX * cos(-MOVE_SPEED) - data->player.planeY * sin(-MOVE_SPEED);
-	data->player.planeY = oldPlaneX * sin(-MOVE_SPEED) + data->player.planeY * cos(-MOVE_SPEED);
-}
-
-void	look_right(t_data *data)
-{
-	double oldDirX = data->player.pdx;
-	data->player.pdx = data->player.pdx * cos(MOVE_SPEED) - data->player.pdy * sin(MOVE_SPEED);
-	data->player.pdy = oldDirX * sin(MOVE_SPEED) + data->player.pdy * cos(MOVE_SPEED);
-	double oldPlaneX = data->player.planeX;
-	data->player.planeX = data->player.planeX * cos(MOVE_SPEED) - data->player.planeY * sin(MOVE_SPEED);
-	data->player.planeY = oldPlaneX * sin(MOVE_SPEED) + data->player.planeY * cos(MOVE_SPEED);
+	if (kp == XK_Right)
+		look_right(&data()->player);
+	else if ((kp == XK_s || kp == XK_Down))
+		move_backward(data());
+	else if (kp == XK_Left)
+		look_left(&data()->player);
+	else if ((kp == XK_w || kp == XK_Up))
+		move_forward(data());
+	else if (kp == XK_a)
+		move_left(data());
+	else if (kp == XK_d)
+		move_right(data());
+	else if (kp == XK_Escape)
+		exit_game(data()->window.win_ptr);
 }

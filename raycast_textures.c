@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 14:42:37 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/13 14:51:14 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 16:01:42 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		get_wall_dir(void);
 t_img	def_texture(void);
 
-void	paint_wall(int drawStart, int drawEnd, int x, int i)
+void	paint_wall(int d_start, int d_end, int x, int i)
 {
 	double wall_x;
 	int tex_x;
@@ -24,17 +24,17 @@ void	paint_wall(int drawStart, int drawEnd, int x, int i)
 	double tex_pos;
 	
 	if (data()->raycast.side == 0)
-		wall_x = data()->player.py + data()->raycast.w_dist * data()->raycast.rayDirY;
+		wall_x = data()->player.py + data()->raycast.w_dist * data()->raycast.r_dir_y;
 	else
-		wall_x = data()->player.px + data()->raycast.w_dist * data()->raycast.rayDirX;
+		wall_x = data()->player.px + data()->raycast.w_dist * data()->raycast.r_dir_x;
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * (float)XPM_SIZE);
-	if ((data()->raycast.side == 0 && data()->raycast.rayDirX > 0) || \
-		(data()->raycast.side == 1 && data()->raycast.rayDirY < 0))
+	if ((data()->raycast.side == 0 && data()->raycast.r_dir_x > 0) || \
+		(data()->raycast.side == 1 && data()->raycast.r_dir_y < 0))
 		tex_x = XPM_SIZE - tex_x - 1;
 	step = 1.0 * (XPM_SIZE) / data()->raycast.line_height;
-	tex_pos = (drawStart - WIN_HEIGHT/ 2 + data()->raycast.line_height / 2) * step;
-	while (i < drawEnd)
+	tex_pos = (d_start - WIN_HEIGHT/ 2 + data()->raycast.line_height / 2) * step;
+	while (i < d_end)
 	{
 		tex_y = (int)tex_pos & (XPM_SIZE - 1);
 		tex_pos += step;
@@ -49,14 +49,14 @@ int	get_wall_dir(void)
 	dir = -1;
 	if (data()->raycast.side == 0)
 	{
-		if (data()->raycast.rayDirX < 0)
+		if (data()->raycast.r_dir_x < 0)
 			dir = WE;
 		else
 			dir = EA;
 	}
 	else
 	{	
-		if (data()->raycast.rayDirY < 0)
+		if (data()->raycast.r_dir_y < 0)
 			dir = NO;
 		else
 			dir = SO;

@@ -2,7 +2,7 @@ NAME = cub3D
 
 SOURCES = main.c \
 			mlx_utils.c \
-			paintUtils.c \
+			paint_utils.c \
 			raycast.c \
 			raycast_textures.c \
 			get_next_line/get_next_line.c \
@@ -29,6 +29,7 @@ SOURCES = main.c \
 			parser/check_access.c \
 			init_orientation.c \
 			move.c \
+			look.c \
 
 
 OBJ = $(SOURCES:.c=.o)
@@ -36,7 +37,7 @@ OBJ = $(SOURCES:.c=.o)
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g -Iincs -Imlx_Linux -fsanitize=address
-OPTFLAGS    =   -O3 -march=native -ffast-math -funsafe-math-optimizations -ffinite-math-only -O2 -O1
+OPTFLAGS    =   -O3 -march=native -ffast-math -funsafe-math-optimizations -ffinite-math-only
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(OPTFLAGS) -I/usr/include -Imlx_linux -Iincs -O0 -c $< -o $@
