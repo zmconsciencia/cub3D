@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:14:46 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/10 16:54:00 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 12:20:32 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 int	check_file_access(char *file)
 {
-	if (access(file, R_OK) == -1)
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
 		return (0);
+	close(fd);
 	return (1);
 }
 
