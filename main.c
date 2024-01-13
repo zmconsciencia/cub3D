@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/13 12:18:29 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/13 17:57:34 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ t_data	*data(void)
 
 void buttons(int kp) {
     if (kp == XK_Right)
-        look_right(data());
+        look_right(&data()->player);
 	else if ((kp == XK_s || kp == XK_Down))
         move_backward(data());
 	else if (kp == XK_Left)
-        look_left(data());
+        look_left(&data()->player);
 	else if ((kp == XK_w || kp == XK_Up))
         move_forward(data());
     else if (kp == XK_a)
@@ -33,13 +33,13 @@ void buttons(int kp) {
     else if (kp == XK_d)
         move_right(data());
     else if (kp == XK_Escape)
-        exit_game();
+        exit_game(data()->window.win_ptr);
 }
 
 void paintCanva() {
-    clearScreen();
+    clear_screen();
     raycast(&data()->raycast, &data()->player);
-	mlx_put_image_to_window(data()->window.mlx_ptr, data()->window.win_ptr ,data()->image.img, 0, 0);
+	mlx_put_image_to_window(data()->window.mlx_ptr, data()->window.win_ptr ,data()->buffer.img, 0, 0);
 }
 
 int move(int kp) {

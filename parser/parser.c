@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:27:18 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/10 16:53:37 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:04:18 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	parser(int ac, char **av)
 
 	if (ac != 2)
 		exit_free("Wrong number of arguments\n");
+	if (WIN_HEIGHT > 2000 || WIN_WIDTH > 2000)
+		exit_free("Error: Resolution too high\n");
 	if (ft_strncmp(ft_strrchr(av[1], '.'), ".cub", 4) || \
 		ft_strlen(ft_strrchr(av[1], '.')) != 4)
 		exit_free("Error: Invalid map extension\n");
