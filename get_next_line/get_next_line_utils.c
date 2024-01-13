@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com >  +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:54:16 by svalente          #+#    #+#             */
-/*   Updated: 2023/06/11 14:58:43 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:16:32 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "cub3d.h"
 
 size_t	ft_strlen_gnl(char *s)
 {
@@ -34,7 +35,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	str = malloc((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1));
+	str = ft_calloc((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1), sizeof(char));
 	if (!str)
 		return (0);
 	while (s1 && s1[i])

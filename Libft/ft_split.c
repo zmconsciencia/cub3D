@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 17:16:47 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 20:27:59 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:14:18 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**ft_split(char const *s, char *c)
 	char	**split;
 	int		index;
 
-	split = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	split = ft_calloc(ft_count_words(s, c) + 1, sizeof(char *));
 	if (!s || !split)
 		return (0);
 	i = 0;

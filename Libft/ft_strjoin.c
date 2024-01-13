@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:57:43 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/01 20:29:46 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:15:44 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	str = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char *));
 	if (!str)
 		return (0);
 	while (s1 && s1[i])
@@ -31,12 +31,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str[j] = '\0';
 	return (str);
 }
-
-/* #include <stdio.h>
-int	main()
-{
-	char	*teste1 = "A Sofia ";
-	char	*teste2 = "estuda na 42 Lisboa.";
-	
-	printf("%s\n%s\n%s\n", teste1, teste2, ft_strjoin(teste1, teste2));
-} */
