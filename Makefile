@@ -4,6 +4,7 @@ SOURCES = main.c \
 			mlx_utils.c \
 			paintUtils.c \
 			raycast.c \
+			raycast_textures.c \
 			get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c \
 			Libft/ft_calloc.c \
@@ -35,7 +36,7 @@ OBJ = $(SOURCES:.c=.o)
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g -Iincs -Imlx_Linux -fsanitize=address
-OPTFLAGS    =   -O3 -march=native -ffast-math -funsafe-math-optimizations -ffinite-math-only
+OPTFLAGS    =   -O3 -march=native -ffast-math -funsafe-math-optimizations -ffinite-math-only -O2 -O1
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(OPTFLAGS) -I/usr/include -Imlx_linux -Iincs -O0 -c $< -o $@

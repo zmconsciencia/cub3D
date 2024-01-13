@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid Date        by              +#+  #+#    #+#             */
-/*   Updated: 2024/01/13 12:57:03 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 14:51:14 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define ROT_SPEED 0.05
 # define WIN_HEIGHT 720
 # define WIN_WIDTH 1280
+# define XPM_SIZE 64
 
 # include "../mlx_linux/mlx.h"
 # include <stdio.h>
@@ -82,12 +83,13 @@ typedef struct s_raycast {
     int     mapY;
     double  sideDistX;
     double  sideDistY;
-    double  perpWallDist;
+    double  w_dist;
     double  deltaDistX;
     double  deltaDistY;
     int     stepX;
     int     stepY;
     int     side;
+	double	line_height;
 }       t_raycast;
 
 typedef struct s_texture
@@ -114,12 +116,12 @@ typedef struct s_map
 }	t_map;
 
 typedef struct	s_data {
-    t_img       	buffer;
-	t_win			window;
-    t_raycast   	raycast;
-	t_img			image;
-	t_map			map;
-	t_player		player;
+    t_img       buffer;
+	t_win		window;
+    t_raycast	raycast;
+	t_img		image;
+	t_map		map;
+	t_player	player;
 }				t_data;
 
 
@@ -137,12 +139,13 @@ t_data	*data(void);
 
 //paint stuff
 void    clearScreen(void);
+void	paint_wall(int drawStart, int drawEnd, int x, int i);
 void    paintFloor(int color, int x, int drawEnd);
 void    paintCeiling(int color, int x, int drawStart);
 void    paintToWindow(void);
 void    raycastToImage(t_raycast *raycast, t_player player);
 void    raycast(t_raycast *raycast, t_player *player);
-void	load_images();
+void	load_images(void);
 
 //parse
 char 	**create_matrix(int fd, char *path, int counter);

@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 15:41:33 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/13 12:58:10 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 13:09:01 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	move_forward(t_data *data)
 {
 	if (data->map.map[(int)(data->player.py + data->player.pdy * MOVE_SPEED)][(int)(data->player.px + data->player.pdx * MOVE_SPEED)] == '0')
 	{
-		printf("player angle: %f,%f\n", data->player.pdx, data->player.pdy);
 		data->player.px += data->player.pdx * MOVE_SPEED;
 		data->player.py += data->player.pdy * MOVE_SPEED;
 	}

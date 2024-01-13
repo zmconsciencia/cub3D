@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:23:12 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/09 16:14:35 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 14:51:14 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void performDDA(t_raycast *raycast) {
             raycast->side = 1;
         }
         if (raycast->mapX >= 0 && raycast->mapX < data()->window.w &&
-            raycast->mapY >= 0 && raycast->mapY < data()->window.h &&
+            raycast->mapY >= 0 && raycast->mapY < WIN_HEIGHT&&
             data()->map.map[raycast->mapY][raycast->mapX] == '1')
             hit = 1;
     }
     if (raycast->side == 0)
-        raycast->perpWallDist = raycast->sideDistX - raycast->deltaDistX;
+        raycast->w_dist = raycast->sideDistX - raycast->deltaDistX;
     else
-        raycast->perpWallDist = raycast->sideDistY - raycast->deltaDistY;
+        raycast->w_dist = raycast->sideDistY - raycast->deltaDistY;
 }
 
 void	rayInit(t_raycast *raycast, t_player *player,int x)
@@ -77,109 +77,31 @@ void	rayInit(t_raycast *raycast, t_player *player,int x)
 		raycast->deltaDistY = fabs(1 / raycast->rayDirY);
 }
 
-int	get_wall_dir()
-{
-	int	dir;
-
-	dir = -1;
-	if (data()->raycast.side == 0)
-	{
-		if (data()->raycast.rayDirX < 0)
-			dir = WE;
-		else
-			dir = EA;
-	}
-	else
-	{	
-		if (data()->raycast.rayDirY < 0)
-			dir = NO;
-		else
-			dir = SO;
-	}
-	return (dir);
-}
-
-t_img	correct_texture()
-{
-	int	dir;
-
-	dir = get_wall_dir();
-	if (dir == NO)
-		return (data()->map.textures.north.asset);
-	else if (dir == SO)
-		return (data()->map.textures.south.asset);
-	else if (dir == WE)
-		return (data()->map.textures.west.asset);
-	else
-		return (data()->map.textures.east.asset);
-}
-
-void	paint_wall(t_raycast *raycast, int lineHeight, int drawStart, int drawEnd, int x, int i)
-{
-	//int color;
-	double wall_x;
-	int tex_x;
-	int tex_y;
-	double step;
-	double tex_pos;
-	
-	if (raycast->side == 0)
-		wall_x = data()->player.py + raycast->perpWallDist * raycast->rayDirY;
-	else
-		wall_x = data()->player.px + raycast->perpWallDist * raycast->rayDirX;
-	wall_x -= floor(wall_x);
-	tex_x = (int)(wall_x * 64.0);
-	if ((raycast->side == 0 && raycast->rayDirX > 0) || (raycast->side == 1 && raycast->rayDirY < 0))
-		tex_x = 64 - tex_x - 1;
-	step = 1.0 * (64) / lineHeight;
-	tex_pos = (drawStart - data()->window.h / 2 + lineHeight / 2) * step;
-	while (i < drawEnd)
-	{
-		tex_y = (int)tex_pos & (64 - 1);
-		tex_pos += step;
-		//color = my_mlx_pixel_get(correct_texture(), tex_x, tex_y);
-		my_mlx_pixel_put(data()->buffer, x, i, my_mlx_pixel_get(correct_texture(), tex_x, tex_y));         
-		i++;
-	}
-}
-
 void	paintBuffer(int x, t_raycast *raycast)
 {
-	double lineHeight;
+	//double lineHeight;
 	double drawStart;
 	double drawEnd;
 	double i;
 
-	if (raycast->perpWallDist > 0)
-		lineHeight = (int)(data()->window.h / raycast->perpWallDist);
+	if (raycast->w_dist > 0)
+		data()->raycast.line_height = (int)(WIN_HEIGHT/ raycast->w_dist);
 	else
-		lineHeight = (int)WIN_HEIGHT;
-	drawStart = -lineHeight / 2 + data()->window.h / 2;
-	drawEnd = lineHeight / 2 + data()->window.h / 2;
+		data()->raycast.line_height = (int)WIN_HEIGHT;
+	drawStart = -data()->raycast.line_height / 2 + WIN_HEIGHT/ 2;
+	drawEnd = data()->raycast.line_height / 2 + WIN_HEIGHT/ 2;
 	i = drawStart;
 	if (drawStart < 0)
 	{
 		drawStart = 0;
 		i = 0;
 	}
-	if (drawEnd > data()->window.h)
-		drawEnd = data()->window.h;
-	paint_wall(raycast, lineHeight, drawStart, drawEnd, x, i);
+	if (drawEnd > WIN_HEIGHT)
+		drawEnd = WIN_HEIGHT;
+	paint_wall(drawStart, drawEnd, x, i);
 	paintFloor(data()->map.textures.floor, x, drawEnd);
 	paintCeiling(data()->map.textures.ceiling, x, drawStart);
 	draw_minimap(data());
-}
-
-void load_images()
-{
-	data()->map.textures.north.asset = load_xpm_file(data()->window.mlx_ptr, 
-		data()->map.textures.north.path);
-	data()->map.textures.south.asset = load_xpm_file(data()->window.mlx_ptr, 
-		data()->map.textures.south.path);
-	data()->map.textures.west.asset = load_xpm_file(data()->window.mlx_ptr, 
-		data()->map.textures.west.path);
-	data()->map.textures.east.asset = load_xpm_file(data()->window.mlx_ptr, 
-		data()->map.textures.east.path);
 }
 
 void raycast(t_raycast *raycast, t_player *player)
