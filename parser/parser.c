@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:27:18 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/13 18:04:18 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:45:31 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	parser(int ac, char **av)
 		ft_strlen(ft_strrchr(av[1], '.')) != 4)
 		exit_free("Error: Invalid map extension\n");
 	data()->map.file = get_file(av[1]);
-	i = get_info();
 	if (!data()->map.file || !data()->map.file[0])
 		exit_free("Error: The map is empty\n");
+	i = get_info();
 	check_info();
 	i = get_map_start(i);
 	data()->map.map = copy_matrix(data()->map.file + i);
