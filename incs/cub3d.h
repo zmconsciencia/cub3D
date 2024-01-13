@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 11:12:49 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/10 16:31:30 by svalente         ###   ########.fr       */
+/*   Created: Invalid Date        by              +#+  #+#    #+#             */
+/*   Updated: 2024/01/13 12:57:03 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef HEADER_H
 # define HEADER_H
@@ -171,5 +172,7 @@ void	look_left(t_data *data);
 void	look_right(t_data *data);
 int		files_access();
 void	draw_minimap(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
 
 #endif
