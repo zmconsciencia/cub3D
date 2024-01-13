@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:14:46 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/13 12:20:32 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/13 15:00:21 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	check_file_access(char *file)
 	return (1);
 }
 
-int files_access()
+int	files_access(void)
 {
-	if (!check_file_access(data()->map.textures.north.path) || 
-		!check_file_access(data()->map.textures.south.path) ||
-		!check_file_access(data()->map.textures.west.path) ||
+	if (!check_file_access(data()->map.textures.north.path) || \
+		!check_file_access(data()->map.textures.south.path) || \
+		!check_file_access(data()->map.textures.west.path) || \
 		!check_file_access(data()->map.textures.east.path))
 		return (0);
 	return (1);
