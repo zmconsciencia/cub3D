@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:16:10 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/13 18:28:05 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:59:14 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	get_textures(char **split)
 			data()->map.textures.west.path = ft_strdup(split[1]);
 		else if (!ft_strcmp(split[0], "EA") && !data()->map.textures.east.path)
 			data()->map.textures.east.path = ft_strdup(split[1]);
-		else 
+		else
 		{
 			free_matrix(split);
 			exit_free("Error: Invalid line\n");

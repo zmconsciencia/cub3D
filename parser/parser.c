@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:27:18 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/13 18:45:31 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:58:58 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ static void	check_info(void)
 	{
 		exit_free("Error: Missing information\n");
 	}
-	if (ft_strncmp(ft_strrchr(data()->map.textures.north.path, '.'), ".xpm", 4) 
+	if (ft_strncmp(ft_strrchr(data()->map.textures.north.path, '.'), ".xpm", 4)
 		|| ft_strlen(ft_strrchr(data()->map.textures.north.path, '.')) != 4 || \
-		ft_strncmp(ft_strrchr(data()->map.textures.south.path, '.'), ".xpm", 4) 
+		ft_strncmp(ft_strrchr(data()->map.textures.south.path, '.'), ".xpm", 4)
 		|| ft_strlen(ft_strrchr(data()->map.textures.south.path, '.')) != 4 || \
-		ft_strncmp(ft_strrchr(data()->map.textures.west.path, '.'), ".xpm", 4) 
+		ft_strncmp(ft_strrchr(data()->map.textures.west.path, '.'), ".xpm", 4)
 		|| ft_strlen(ft_strrchr(data()->map.textures.west.path, '.')) != 4 || \
-		ft_strncmp(ft_strrchr(data()->map.textures.east.path, '.'), ".xpm", 4) 
+		ft_strncmp(ft_strrchr(data()->map.textures.east.path, '.'), ".xpm", 4)
 		|| ft_strlen(ft_strrchr(data()->map.textures.east.path, '.')) != 4)
 	{
 		exit_free("Error: Invalid texture extension\n");
