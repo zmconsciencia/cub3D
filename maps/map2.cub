@@ -2,8 +2,8 @@ NO ./pics/bluestone.xpm
 SO ./pics/colorstone.xpm
 EA ./pics/purplestone.xpm
 WE ./pics/wood.xpm
-C 68, 142, 228
-F 229,204,255
+F 200,20,200
+C 171,154,137
 
 11111111111111
 10000000000001
