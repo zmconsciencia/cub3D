@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 14:42:37 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/14 17:57:44 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:21:27 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,15 @@ t_img	def_texture(void)
 
 void	load_images(void)
 {
-	data()->map.textures.north.asset = load_xpm_file(data()->window.mlx_ptr, \
-		data()->map.textures.north.path);
-	data()->map.textures.south.asset = load_xpm_file(data()->window.mlx_ptr, \
-		data()->map.textures.south.path);
-	data()->map.textures.west.asset = load_xpm_file(data()->window.mlx_ptr, \
-		data()->map.textures.west.path);
-	data()->map.textures.east.asset = load_xpm_file(data()->window.mlx_ptr, \
-		data()->map.textures.east.path);
+	t_data	*d;
+
+	d = data();
+	d->map.textures.north.asset = load_xpm_file(d->window.mlx_ptr,
+			d->map.textures.north.path);
+	d->map.textures.south.asset = load_xpm_file(d->window.mlx_ptr,
+			d->map.textures.south.path);
+	d->map.textures.west.asset = load_xpm_file(d->window.mlx_ptr,
+			d->map.textures.west.path);
+	d->map.textures.east.asset = load_xpm_file(d->window.mlx_ptr,
+			d->map.textures.east.path);
 }

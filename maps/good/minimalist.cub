@@ -1,9 +1,10 @@
 F 0,255,0
-NO ./textures/Final/monty_python/north.xpm
+
+SO ./pics/colorstone.xpm
 C 0,0,255
-SO ./textures/Final/monty_python/south.xpm
-WE ./textures/Final/monty_python/west.xpm
-EA ./textures/Final/monty_python/east.xpm
+NO ./pics/bluestone.xpm
+EA ./pics/purplestone.xpm
+WE ./pics/wood.xpm
 
 
         1111111111111111111111111

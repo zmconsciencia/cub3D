@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 15:22:58 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/13 18:42:10 by jabecass         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:22:17 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 # define MOVE_SPEED 0.03
 # define ROT_SPEED 0.03
-# define WIN_HEIGHT 1080
-# define WIN_WIDTH 1920
+# define WIN_HEIGHT 400
+# define WIN_WIDTH 600
 # define XPM_SIZE 64
 
 # include "../mlx_linux/mlx.h"
@@ -153,7 +153,7 @@ void	free_matrix(char **map);
 void	exit_free(char *str);
 int		err_msg(char *str);
 int		matrix_size(char **map, char side);
-int		get_info(void);
+int		get_info(int i);
 void	check_characters(char **map);
 void	get_player_pos(char **map);
 void	check_walls(char **map);

@@ -6,7 +6,7 @@
 /*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 10:58:08 by svalente          #+#    #+#             */
-/*   Updated: 2023/12/05 12:03:40 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:37:39 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	convert_color(char **color, char **split)
 	if (!is_within_range(rgb[0], rgb[1], rgb[2]))
 	{
 		free_matrix(split);
-		exit_free("Error: Numbers are not withing the correct range\n");
+		exit_free("Error: Numbers are not within the correct range\n");
 	}
 	return ((255 & 0xff << 24) + ((rgb[0] & 0xff) << 16) + \
 		((rgb[1] & 0xff) << 8) + ((rgb[2] & 0xff)));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:54 by jabecass          #+#    #+#             */
-/*   Updated: 2024/01/14 17:53:29 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/16 14:25:47 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int	main(int ac, char **av)
 {
 	parser(ac, av);
 	init_player_orientation(data());
-	data()->window = new_program(WIN_WIDTH, WIN_HEIGHT, "cub3D");
+	(data()->window) = new_program(WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!data()->window.win_ptr || !data()->window.mlx_ptr)
 		exit(1);
-	data()->buffer = new_img(WIN_WIDTH, WIN_HEIGHT);
+	(data()->buffer) = new_img(WIN_WIDTH, WIN_HEIGHT);
 	load_images();
 	paint_canva();
 	mlx_hook(data()->window.win_ptr, 2, 1L << 0, move, data());

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:16:10 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/14 17:59:14 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:10:40 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,25 @@ static int	get_textures(char **split);
 static int	get_colors(char **split);
 static void	free_split_exit(char **split, char *str);
 
-int	get_info(void)
+static void	cleanup_matrix(char ***sp)
+{
+	if (!sp || !*sp)
+		return ;
+	free_matrix(*sp);
+	*sp = NULL;
+}
+
+int	get_info(int i)
 {
 	char	**sp;
-	int		i;
 	int		counter;
 
-	i = -1;
 	counter = 0;
 	sp = NULL;
 	while (data()->map.file[++i])
 	{
 		if (sp)
-			free_matrix(sp);
+			cleanup_matrix(&sp);
 		if (counter == 6)
 			break ;
 		sp = ft_split(data()->map.file[i], WHITESPACE);
@@ -42,6 +48,7 @@ int	get_info(void)
 		if (counter > 6)
 			free_split_exit(sp, "Error: Invalid number of arguments\n");
 	}
+	cleanup_matrix(&sp);
 	return (i);
 }
 

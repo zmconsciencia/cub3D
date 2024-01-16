@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svalente <svalente@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: svalente <svalente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:27:18 by svalente          #+#    #+#             */
-/*   Updated: 2024/01/14 17:58:58 by svalente         ###   ########.fr       */
+/*   Updated: 2024/01/16 14:25:42 by svalente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	parser(int ac, char **av)
 	data()->map.file = get_file(av[1]);
 	if (!data()->map.file || !data()->map.file[0])
 		exit_free("Error: The map is empty\n");
-	i = get_info();
+	i = get_info(-1);
 	check_info();
 	i = get_map_start(i);
 	data()->map.map = copy_matrix(data()->map.file + i);
@@ -57,8 +57,7 @@ static char	**get_file(char *path)
 static void	check_info(void)
 {
 	if (!data()->map.textures.north.path || !data()->map.textures.south.path || \
-		!data()->map.textures.west.path || !data()->map.textures.east.path || \
-		!data()->map.textures.ceiling || !data()->map.textures.floor)
+		!data()->map.textures.west.path || !data()->map.textures.east.path)
 	{
 		exit_free("Error: Missing information\n");
 	}
